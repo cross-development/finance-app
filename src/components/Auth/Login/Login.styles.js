@@ -1,6 +1,8 @@
 //Core
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import EllipseBlue from 'assets/EllipseBlue.png';
+import EllipseOrange from 'assets/EllipseOrange.png';
 
 export const StyledLoginWrap = styled.div`
 	display: flex;
@@ -8,16 +10,20 @@ export const StyledLoginWrap = styled.div`
 	justify-content: space-evenly;
 	align-items: center;
 	height: 100vh;
+	width: 100%;
 	background-color: #e7eaf2;
 `;
 
 export const StyledLogoWrap = styled.div`
+	background-image: url(${EllipseBlue});
+	background-repeat: no-repeat;
+	background-position: bottom;
+	background-size: contain;
 	width: 40%;
 	height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	position: relative;
 `;
 
 export const StyledPromoImg = styled.img`
@@ -25,14 +31,25 @@ export const StyledPromoImg = styled.img`
 	height: auto;
 `;
 
-export const StyledFormWrap = styled.div`
+export const StyledBackdrop = styled.div`
+	background-image: url(${EllipseOrange});
+	background-repeat: no-repeat;
+	background-position: top;
+	background-size: contain;
 	width: 60%;
-	height: 100vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background-color: rgba(255, 255, 255, 0.4);
-	filter: blur(40%);
+`;
+
+export const StyledFormWrap = styled.div`
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(255, 255, 255, 0.4);
+	backdrop-filter: blur(8px);
 `;
 
 export const StylesForm = styled.form`

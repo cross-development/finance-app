@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 //Components
 import ProgressBar from '@ramonak/react-progress-bar';
 //Styles
-import { StyledLogoWrap, StyledPromoImg, StyledLink } from './Register.styles';
 import { StyledH1, StyledRegisterWrap, StyledFormWrap } from './Register.styles';
 import { StyledForm, StyledLabel, StyledInput, StyledButton } from './Register.styles';
+import { StyledLogoWrap, StyledPromoImg, StyledLink, StyledBackdrop } from './Register.styles';
 
 const Register = ({ userInfo, progress, onSubmit, onChange }) => {
 	const { username, email, password, repassword } = userInfo;
@@ -17,65 +17,67 @@ const Register = ({ userInfo, progress, onSubmit, onChange }) => {
 				<StyledPromoImg src={`${process.env.PUBLIC_URL}/img/walletPromo2.png`} />
 			</StyledLogoWrap>
 
-			<StyledFormWrap>
-				<StyledForm onSubmit={onSubmit}>
-					<StyledH1>Wallet</StyledH1>
+			<StyledBackdrop>
+				<StyledFormWrap>
+					<StyledForm onSubmit={onSubmit}>
+						<StyledH1>Wallet</StyledH1>
 
-					<StyledLabel>
-						<StyledInput
-							required
-							type="email"
-							name="email"
-							value={email}
-							autoComplete="off"
-							placeholder="E-mail"
-							onChange={onChange}
-						/>
-					</StyledLabel>
+						<StyledLabel>
+							<StyledInput
+								required
+								type="email"
+								name="email"
+								value={email}
+								autoComplete="off"
+								placeholder="E-mail"
+								onChange={onChange}
+							/>
+						</StyledLabel>
 
-					<StyledLabel>
-						<StyledInput
-							required
-							type="password"
-							name="password"
-							value={password}
-							autoComplete="off"
-							placeholder="Пароль"
-							onChange={onChange}
-						/>
-					</StyledLabel>
+						<StyledLabel>
+							<StyledInput
+								required
+								type="password"
+								name="password"
+								value={password}
+								autoComplete="off"
+								placeholder="Пароль"
+								onChange={onChange}
+							/>
+						</StyledLabel>
 
-					<StyledLabel>
-						<StyledInput
-							required
-							type="password"
-							name="repassword"
-							value={repassword}
-							autoComplete="off"
-							placeholder="Подтвердите пароль"
-							onChange={onChange}
-						/>
-					</StyledLabel>
+						<StyledLabel>
+							<StyledInput
+								required
+								type="password"
+								name="repassword"
+								value={repassword}
+								autoComplete="off"
+								placeholder="Подтвердите пароль"
+								onChange={onChange}
+							/>
+						</StyledLabel>
 
-					<ProgressBar height="10px" labelSize="0px" bgcolor="#24CCA7" completed={progress} />
+						<ProgressBar height="10px" labelSize="0px" bgcolor="#24CCA7" completed={progress} />
 
-					<StyledLabel>
-						<StyledInput
-							required
-							type="text"
-							name="username"
-							value={username}
-							autoComplete="off"
-							placeholder="Ваше имя"
-							onChange={onChange}
-						/>
-					</StyledLabel>
+						<StyledLabel>
+							<StyledInput
+								required
+								type="text"
+								name="username"
+								value={username}
+								autoComplete="off"
+								placeholder="Ваше имя"
+								onChange={onChange}
+							/>
+						</StyledLabel>
 
-					<StyledButton type="submit">Регистрация</StyledButton>
+						<StyledButton type="submit">Регистрация</StyledButton>
 
-					<StyledLink to="/login">Вход</StyledLink>
-				</StyledForm>
-			</StyledFormWrap>
+						<StyledLink to="/login">Вход</StyledLink>
+					</StyledForm>
+				</StyledFormWrap>
+			</StyledBackdrop>
 		</StyledRegisterWrap>
 	);
 };

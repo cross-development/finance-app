@@ -18,6 +18,14 @@ const routes = [
 		restricted: false,
 		component: lazy(() => import('pages/StatisticsPage' /* webpackChunkName: "statistics-page"*/)),
 	},
+	// {
+	// 	path: '/currency',
+	// 	label: 'Курсы валют',
+	// 	exact: true,
+	// 	private: true,
+	// 	restricted: false,
+	// 	component: lazy(() => import('pages/CurrencyPage' /* webpackChunkName: "currency-page"*/)),
+	// },
 	{
 		path: '/register',
 		label: 'Register',
