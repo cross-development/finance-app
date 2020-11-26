@@ -2,7 +2,6 @@
 import styled from 'styled-components';
 
 export const StyledTable = styled.table`
-	/* border: 1px solid #ccc; */
 	border-collapse: collapse;
 	margin: 0;
 	padding: 0;
@@ -29,9 +28,15 @@ export const StyledTable = styled.table`
 	& tr {
 		background: transparent;
 		padding: 0.35em;
+		transition: all 250ms linear;
 
 		&:not(:first-child) {
 			border-top: 1px solid #d1d1d1;
+		}
+
+		&:hover {
+			background-color: #fff;
+			cursor: pointer;
 		}
 	}
 

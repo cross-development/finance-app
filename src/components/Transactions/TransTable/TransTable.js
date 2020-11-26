@@ -3,12 +3,17 @@ import React, { useMemo } from 'react';
 //Components
 import TransTableItem from '../TransTableItem';
 //Redux
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { transactionsOperations } from 'redux/transactions';
 //Styles
 import { StyledTable } from './TransTable.styles';
 
 const TransTable = () => {
 	const { items: transactions } = useSelector(state => state.transactions);
+	const dispatch = useDispatch();
+
+	const handleRemoveTransaction = ({ currentTarget: { id } }) =>
+		dispatch(transactionsOperations.removeTransaction(id));
 
 	return (
 		<StyledTable>
@@ -24,8 +29,12 @@ const TransTable = () => {
 			</thead>
 
 			<tbody>
-				{transactions.map(({ id, userId, ...transaction }) => (
-					<TransTableItem key={id} transaction={transaction} />
+				{transactions.map(transaction => (
+					<TransTableItem
+						key={transaction.id}
+						transaction={transaction}
+						onRemoveTransaction={handleRemoveTransaction}
+					/>
 				))}
 			</tbody>
 		</StyledTable>

@@ -36,6 +36,11 @@ export const StyledNavLink = styled(NavLink)`
 	color: #000;
 	display: flex;
 	align-items: center;
+	transition: all 250ms linear;
+
+	&:hover {
+		color: #4a56e2;
+	}
 
 	&.active {
 		font-weight: 700;
