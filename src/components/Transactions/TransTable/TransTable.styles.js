@@ -36,7 +36,6 @@ export const StyledTable = styled.table`
 
 		&:hover {
 			background-color: #fff;
-			cursor: pointer;
 		}
 	}
 

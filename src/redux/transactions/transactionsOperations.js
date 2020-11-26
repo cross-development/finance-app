@@ -58,13 +58,13 @@ const getTransactionCategories = () => dispatch => {
 		.catch(error => dispatch(transactionsActions.getTransactionCategoryFailure(error)));
 };
 
-const getTransactionsSummery = ({ month, year }) => dispatch => {
-	dispatch(transactionsActions.getTransactionsSummeryRequest());
+const getTransactionsSummary = ({ month, year }) => dispatch => {
+	dispatch(transactionsActions.getTransactionsSummaryRequest());
 
 	axios
 		.get(`/api/transactions-summary?month=${month}&year=${year}`)
-		.then(({ data }) => dispatch(transactionsActions.getTransactionsSummerySuccess(data)))
-		.catch(error => dispatch(transactionsActions.getTransactionsSummeryFailure(error)));
+		.then(({ data }) => dispatch(transactionsActions.getTransactionsSummarySuccess(data)))
+		.catch(error => dispatch(transactionsActions.getTransactionsSummaryFailure(error)));
 };
 
 const transactionsOperations = {
@@ -74,7 +74,7 @@ const transactionsOperations = {
 	removeTransaction,
 
 	getTransactionCategories,
-	getTransactionsSummery,
+	getTransactionsSummary,
 };
 
 export default transactionsOperations;

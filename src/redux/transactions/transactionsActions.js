@@ -21,9 +21,9 @@ const getTransactionCategoryRequest = createAction('transactions/getTransactionC
 const getTransactionCategorySuccess = createAction('transactions/getTransactionCategorySuccess');
 const getTransactionCategoryFailure = createAction('transactions/getTransactionCategoryFailure');
 
-const getTransactionsSummeryRequest = createAction('transactions/getTransactionsSummeryRequest');
-const getTransactionsSummerySuccess = createAction('transactions/getTransactionsSummerySuccess');
-const getTransactionsSummeryFailure = createAction('transactions/getTransactionsSummeryFailure');
+const getTransactionsSummaryRequest = createAction('transactions/getTransactionsSummaryRequest');
+const getTransactionsSummarySuccess = createAction('transactions/getTransactionsSummarySuccess');
+const getTransactionsSummaryFailure = createAction('transactions/getTransactionsSummaryFailure');
 
 const transactionActions = {
 	addTransactionRequest,
@@ -46,9 +46,9 @@ const transactionActions = {
 	getTransactionCategorySuccess,
 	getTransactionCategoryFailure,
 
-	getTransactionsSummeryRequest,
-	getTransactionsSummerySuccess,
-	getTransactionsSummeryFailure,
+	getTransactionsSummaryRequest,
+	getTransactionsSummarySuccess,
+	getTransactionsSummaryFailure,
 };
 
 export default transactionActions;
