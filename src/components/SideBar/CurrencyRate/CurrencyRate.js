@@ -18,13 +18,15 @@ const CurrencyRate = () => {
 	return (
 		<StylesCurrencyWrap>
 			<StyledTable>
-				<tbody>
+				<thead>
 					<tr>
 						<th>Валюта</th>
 						<th>Покупка</th>
 						<th>Продажа</th>
 					</tr>
+				</thead>
 
+				<tbody>
 					{newCurrency.map(({ ccy, buy, sale }) => (
 						<tr key={ccy}>
 							<td>{ccy}</td>

@@ -1,12 +1,19 @@
 //Core
-import React from 'react';
+import React, { useState } from 'react';
 //Components
 import Transactions from 'components/Transactions';
+import ModalForm from 'components/ModalForm';
 
 const HomePage = () => {
+	const [isModalOpen, setIsModalOpen] = useState(true);
+
+	const handleToggleModalOpen = () => setIsModalOpen(prevState => !prevState);
+
 	return (
 		<>
-			<Transactions />
+			<Transactions isModalOpen={isModalOpen} onToggleModalOpen={handleToggleModalOpen} />
+
+			{isModalOpen && <ModalForm onToggleModalOpen={handleToggleModalOpen} />}
 		</>
 	);
 };

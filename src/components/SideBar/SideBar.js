@@ -30,7 +30,7 @@ const SideBar = () => (
 const StyledSideBar = styled.aside`
 	background-image: url(${bgImg});
 	background-repeat: no-repeat;
-	background-position: bottom;
+	background-position: bottom left;
 	background-size: contain;
 	flex: 0 0 30%;
 	height: 90vh;

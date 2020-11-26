@@ -4,7 +4,7 @@ import { Switch, BrowserRouter as Router } from 'react-router-dom';
 //Components
 import AppBar from '../AppBar';
 import SideBar from '../SideBar';
-import { Layout } from '../Commons';
+import { Layout, Loader } from '../Commons';
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
@@ -28,7 +28,7 @@ const App = () => {
 			<Layout>
 				{user && <SideBar />}
 
-				<Suspense fallback={null}>
+				<Suspense fallback={<Loader onLoad={true} />}>
 					<Switch>
 						{routes.map(route =>
 							route.private ? (

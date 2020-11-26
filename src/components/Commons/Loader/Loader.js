@@ -13,9 +13,9 @@ const beatCss = css`
 	margin: calc(100vh * 0.4) auto;
 `;
 
-const Loader = ({ onLoad, size }) => (
+const Loader = ({ onLoad }) => (
 	<LoaderWrapperDiv>
-		<BeatLoader size={size} color="#A7A99F" loading={onLoad} css={beatCss} />
+		<BeatLoader size={40} color="#4a56e2" loading={onLoad} css={beatCss} />
 	</LoaderWrapperDiv>
 );
 
