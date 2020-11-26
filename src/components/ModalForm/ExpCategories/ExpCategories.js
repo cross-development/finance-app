@@ -1,26 +1,44 @@
 //Core
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-//Data
-import categoriesList from 'data/categoriesList.json';
+//Redux
+import { useSelector } from 'react-redux';
 //Styles
 import { StyledLabel, StyledSelect } from './ExpCategories.styles';
 
-const ExpCategories = ({ categories, onChangeCategory }) => (
-	<StyledLabel>
-		<StyledSelect name="categoryId" value={categories} onChange={onChangeCategory}>
-			<option value="" disabled>
-				Выберите категорию
-			</option>
+const ExpCategories = ({ transactionType, categories, onChangeCategory }) => {
+	const { categories: categoryList } = useSelector(state => state.transactions);
 
-			{categoriesList.map(({ id, categoryId, label }) => (
-				<option key={id} value={categoryId}>
-					{label}
+	const memoCategories = useMemo(
+		() =>
+			categoryList.reduce((acc, item) => {
+				if (transactionType === item.type) {
+					const option = (
+						<option key={item.id} value={item.id}>
+							{item.name}
+						</option>
+					);
+
+					acc.push(option);
+				}
+
+				return acc;
+			}, []),
+		[categoryList, transactionType],
+	);
+
+	return (
+		<StyledLabel>
+			<StyledSelect name="categoryId" value={categories} onChange={onChangeCategory}>
+				<option value="" disabled>
+					Выберите категорию
 				</option>
-			))}
-		</StyledSelect>
-	</StyledLabel>
-);
+
+				{memoCategories}
+			</StyledSelect>
+		</StyledLabel>
+	);
+};
 
 ExpCategories.propTypes = {
 	categories: PropTypes.string.isRequired,

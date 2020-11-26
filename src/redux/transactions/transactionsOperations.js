@@ -5,21 +5,13 @@ import transactionsActions from './transactionsActions';
 
 axios.defaults.baseURL = 'https://sheltered-sea-54747.herokuapp.com';
 
-const addTransaction = credential => dispatch => {
+const addTransaction = ({ transaction }) => dispatch => {
 	dispatch(transactionsActions.addTransactionRequest());
 
 	axios
-		.post('/api/transactions', credential)
+		.post('/api/transactions', transaction)
 		.then(({ data }) => dispatch(transactionsActions.addTransactionSuccess(data)))
 		.catch(error => dispatch(transactionsActions.addTransactionFailure(error)));
-
-	// {
-	// 	"transactionDate": "string",
-	// 	"type": "INCOME",
-	// 	"categoryId": "string",
-	// 	"comment": "string",
-	// 	"amount": 0
-	//   }
 };
 
 const getTransactions = () => dispatch => {
@@ -29,19 +21,6 @@ const getTransactions = () => dispatch => {
 		.get('/api/transactions')
 		.then(({ data }) => dispatch(transactionsActions.getTransactionsSuccess(data)))
 		.catch(error => dispatch(transactionsActions.getTransactionsFailure(error)));
-
-	// [
-	// 	{
-	// 		id: 'string',
-	// 		transactionDate: 'string',
-	// 		type: 'INCOME',
-	// 		categoryId: 'string',
-	// 		userId: 'string',
-	// 		comment: 'string',
-	// 		amount: 0,
-	// 		balanceAfter: 0,
-	// 	},
-	// ];
 };
 
 const updateTransaction = transactionId => dispatch => {
@@ -70,11 +49,32 @@ const removeTransaction = transactionId => dispatch => {
 		.catch(error => dispatch(transactionsActions.removeTransactionFailure(error)));
 };
 
+const getTransactionCategories = () => dispatch => {
+	dispatch(transactionsActions.getTransactionCategoryRequest());
+
+	axios
+		.get('/api/transaction-categories')
+		.then(({ data }) => dispatch(transactionsActions.getTransactionCategorySuccess(data)))
+		.catch(error => dispatch(transactionsActions.getTransactionCategoryFailure(error)));
+};
+
+const getTransactionsSummery = ({ month, year }) => dispatch => {
+	dispatch(transactionsActions.getTransactionsSummeryRequest());
+
+	axios
+		.get(`/api/transactions-summary?month=${month}&year=${year}`)
+		.then(({ data }) => dispatch(transactionsActions.getTransactionsSummerySuccess(data)))
+		.catch(error => dispatch(transactionsActions.getTransactionsSummeryFailure(error)));
+};
+
 const transactionsOperations = {
 	addTransaction,
 	getTransactions,
 	updateTransaction,
 	removeTransaction,
+
+	getTransactionCategories,
+	getTransactionsSummery,
 };
 
 export default transactionsOperations;

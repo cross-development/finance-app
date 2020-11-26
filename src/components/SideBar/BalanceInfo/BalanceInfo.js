@@ -7,12 +7,15 @@ import { StylesBalanceWrap, StyledTitle, StyledBalance } from './BalanceInfo.sty
 
 const BalanceInfo = () => {
 	const { user } = useSelector(state => state.auth);
+	const { items } = useSelector(state => state.transactions);
+
+	const currentBalance = items.length ? items[items.length - 1].balanceAfter : user.balance;
 
 	return (
 		<StylesBalanceWrap>
 			<StyledTitle>Ваш баланс</StyledTitle>
 
-			<StyledBalance>&#8372; {user.balance}</StyledBalance>
+			<StyledBalance>&#8372; {currentBalance}</StyledBalance>
 		</StylesBalanceWrap>
 	);
 };

@@ -21,12 +21,10 @@ const Loader = ({ onLoad }) => (
 
 Loader.propTypes = {
 	onLoad: PropTypes.bool,
-	size: PropTypes.number,
 };
 
 Loader.defaultProps = {
 	onLoad: false,
-	size: 40,
 };
 
 export default Loader;

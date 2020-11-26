@@ -5,7 +5,7 @@ import Transactions from 'components/Transactions';
 import ModalForm from 'components/ModalForm';
 
 const HomePage = () => {
-	const [isModalOpen, setIsModalOpen] = useState(true);
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	const handleToggleModalOpen = () => setIsModalOpen(prevState => !prevState);
 

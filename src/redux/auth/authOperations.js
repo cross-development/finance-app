@@ -18,7 +18,7 @@ const token = {
 
 const userSignUp = ({ credential }) => dispatch => {
 	dispatch(authActions.userSignUpRequest());
-	console.log('from operation ', credential);
+
 	axios
 		.post('/api/auth/sign-up', credential)
 		.then(({ data }) => {
@@ -26,12 +26,6 @@ const userSignUp = ({ credential }) => dispatch => {
 			dispatch(authActions.userSignUpSuccess(data));
 		})
 		.catch(error => dispatch(authActions.userSignUpFailure(error)));
-
-	// {
-	// 	"username": "string",
-	// 	"email": "string",
-	// 	"password": "string"
-	//   }
 };
 
 const userSignIn = credential => dispatch => {
@@ -44,11 +38,6 @@ const userSignIn = credential => dispatch => {
 			dispatch(authActions.userSignInSuccess(data));
 		})
 		.catch(error => dispatch(authActions.userSignInFailure(error)));
-
-	// {
-	// 	"email": "string",
-	// 	"password": "string"
-	//   }
 };
 
 const userSighOut = () => dispatch => {
@@ -76,13 +65,6 @@ const getCurrentUser = () => (dispatch, getState) => {
 		.get('/api/users/current')
 		.then(({ data }) => dispatch(authActions.getCurrentUserSuccess(data)))
 		.catch(error => dispatch(authActions.getCurrentUserFailure(error)));
-
-	// {
-	// 	"id": "string",
-	// 	"username": "string",
-	// 	"email": "string",
-	// 	"balance": 0
-	//   }
 };
 
 const authOperations = { userSignUp, userSignIn, userSighOut, getCurrentUser };

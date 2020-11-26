@@ -8,6 +8,7 @@ import { Layout, Loader } from '../Commons';
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
+import { transactionsOperations } from 'redux/transactions';
 //Routes
 import routes from 'router';
 import PublicRoute from 'router/PublicRoute';
@@ -20,6 +21,13 @@ const App = () => {
 	useEffect(() => {
 		dispatch(authOperations.getCurrentUser());
 	}, [dispatch]);
+
+	useEffect(() => {
+		if (user) {
+			dispatch(transactionsOperations.getTransactions());
+			dispatch(transactionsOperations.getTransactionCategories());
+		}
+	}, [dispatch, user]);
 
 	return (
 		<Router>

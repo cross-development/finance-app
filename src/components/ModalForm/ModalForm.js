@@ -1,5 +1,6 @@
 //Core
 import React, { useState, useEffect, useCallback } from 'react';
+import moment from 'moment';
 //Components
 import TypeSwitcher from './TypeSwitcher';
 import ExpCategories from './ExpCategories';
@@ -7,6 +8,9 @@ import DataPicker from './DataPicker';
 import AmountInput from './AmountInput';
 import CommentInput from './CommentInput';
 import ButtonsGroup from './ButtonsGroup';
+//Redux
+import { useDispatch } from 'react-redux';
+import { transactionsOperations } from 'redux/transactions';
 //Styles
 import { StyledModalWrap, StyledModalForm } from './ModalForm.styles';
 import { StyledFormTitle, StyledCloseButton, StyledInputsWrap } from './ModalForm.styles';
@@ -19,13 +23,15 @@ const TransactionType = {
 const initialState = {
 	transactionDate: '',
 	type: TransactionType.INCOME,
-	categoryId: '',
+	categoryId: 'd9ee2284-4673-44f4-ab76-6258512ea409',
 	comment: '',
 	amount: 0,
 };
 
 const ModalForm = ({ onToggleModalOpen }) => {
 	const [transactionInfo, setTransactionInfo] = useState(initialState);
+
+	const dispatch = useDispatch();
 
 	const handleCloseModal = useCallback(
 		({ code, target }) => {
@@ -62,12 +68,18 @@ const ModalForm = ({ onToggleModalOpen }) => {
 	const handleSubmit = e => {
 		e.preventDefault();
 
-		console.log(transactionInfo);
+		const { type, amount, transactionDate } = transactionInfo;
 
-		// onToggleModalOpen();
+		const transaction = {
+			...transactionInfo,
+			amount: type === TransactionType.EXPENSE ? parseFloat(-amount) : parseFloat(amount),
+			transactionDate: moment(transactionDate).format(),
+		};
+
+		dispatch(transactionsOperations.addTransaction({ transaction }));
+
+		onToggleModalOpen();
 	};
-
-	const isExpenseType = transactionInfo.type === TransactionType.EXPENSE;
 
 	return (
 		<StyledModalWrap id="backdrop">
@@ -83,12 +95,11 @@ const ModalForm = ({ onToggleModalOpen }) => {
 					onToggleTransactionType={handleToggleTransactionType}
 				/>
 
-				{isExpenseType && (
-					<ExpCategories
-						categories={transactionInfo.categoryId}
-						onChangeCategory={handleChangeTransactionInfo}
-					/>
-				)}
+				<ExpCategories
+					transactionType={transactionInfo.type}
+					categories={transactionInfo.categoryId}
+					onChangeCategory={handleChangeTransactionInfo}
+				/>
 
 				<StyledInputsWrap>
 					<AmountInput

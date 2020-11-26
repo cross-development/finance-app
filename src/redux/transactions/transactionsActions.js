@@ -17,6 +17,14 @@ const removeTransactionRequest = createAction('transactions/removeTransactionReq
 const removeTransactionSuccess = createAction('transactions/removeTransactionSuccess');
 const removeTransactionFailure = createAction('transactions/removeTransactionFailure');
 
+const getTransactionCategoryRequest = createAction('transactions/getTransactionCategoryRequest');
+const getTransactionCategorySuccess = createAction('transactions/getTransactionCategorySuccess');
+const getTransactionCategoryFailure = createAction('transactions/getTransactionCategoryFailure');
+
+const getTransactionsSummeryRequest = createAction('transactions/getTransactionsSummeryRequest');
+const getTransactionsSummerySuccess = createAction('transactions/getTransactionsSummerySuccess');
+const getTransactionsSummeryFailure = createAction('transactions/getTransactionsSummeryFailure');
+
 const transactionActions = {
 	addTransactionRequest,
 	addTransactionSuccess,
@@ -33,6 +41,14 @@ const transactionActions = {
 	removeTransactionRequest,
 	removeTransactionSuccess,
 	removeTransactionFailure,
+
+	getTransactionCategoryRequest,
+	getTransactionCategorySuccess,
+	getTransactionCategoryFailure,
+
+	getTransactionsSummeryRequest,
+	getTransactionsSummerySuccess,
+	getTransactionsSummeryFailure,
 };
 
 export default transactionActions;

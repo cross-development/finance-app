@@ -18,12 +18,24 @@ const items = createReducer([], {
 	[transactionsActions.removeTransactionSuccess]: removeTransaction,
 });
 
+//Categories reducer
+const categories = createReducer([], {
+	[transactionsActions.getTransactionCategorySuccess]: (state, { payload }) => payload,
+});
+
+//Summery reducer
+const summery = createReducer(null, {
+	[transactionsActions.getTransactionsSummerySuccess]: (state, { payload }) => payload,
+});
+
 //Error reducer
 const error = createReducer(null, {
 	[transactionsActions.addTransactionFailure]: (state, { payload }) => payload,
 	[transactionsActions.getTransactionsFailure]: (state, { payload }) => payload,
 	[transactionsActions.updateTransactionFailure]: (state, { payload }) => payload,
 	[transactionsActions.removeTransactionFailure]: (state, { payload }) => payload,
+	[transactionsActions.getTransactionCategoryFailure]: (state, { payload }) => payload,
+	[transactionsActions.getTransactionsSummeryFailure]: (state, { payload }) => payload,
 });
 
 //Loading reducer
@@ -43,10 +55,16 @@ const loading = createReducer(false, {
 	[transactionsActions.removeTransactionRequest]: () => true,
 	[transactionsActions.removeTransactionSuccess]: () => false,
 	[transactionsActions.removeTransactionFailure]: () => false,
+
+	[transactionsActions.getTransactionsSummeryRequest]: () => true,
+	[transactionsActions.getTransactionsSummerySuccess]: () => false,
+	[transactionsActions.getTransactionCategoryFailure]: () => false,
 });
 
 export default combineReducers({
 	items,
+	categories,
+	summery,
 	error,
 	loading,
 });
