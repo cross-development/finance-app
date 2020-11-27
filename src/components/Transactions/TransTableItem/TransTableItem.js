@@ -5,7 +5,9 @@ import moment from 'moment';
 //Redux
 import { useSelector } from 'react-redux';
 //Styles
-import { StyledTrashIcon, StyledTd } from './TransTableItem.styles';
+import { StyledCategory, StyledComment } from './TransTableItem.styles';
+import { StyledTransactionDate, StyledTransactionType } from './TransTableItem.styles';
+import { StyledTrashIcon, StyledBalanceAfter, StyledAmount } from './TransTableItem.styles';
 
 const TransTableItem = ({ transaction, onRemoveTransaction }) => {
 	const { categories } = useSelector(state => state.transactions);
@@ -19,18 +21,19 @@ const TransTableItem = ({ transaction, onRemoveTransaction }) => {
 
 	const transactionType = type === 'INCOME' ? '+' : '-';
 	const parsedDate = moment(transactionDate).format('DD.MM.YYYY');
-	const amountStyle = type === 'INCOME' ? { color: '#24CCA7' } : { color: '#FF6596' };
+	const formattedAmount = amount.toLocaleString('ua-UA', { minimumFractionDigits: 2 });
+	const formattedBalanceAfter = balanceAfter.toLocaleString('ua-UA', { minimumFractionDigits: 2 });
 
 	return (
 		<tr>
-			<td>{parsedDate}</td>
-			<td>{transactionType}</td>
-			<td>{category?.name}</td>
-			<td>{comment}</td>
-			<td style={amountStyle}>{amount.toFixed(2)}</td>
-			<StyledTd>
-				{balanceAfter.toFixed(2)} <StyledTrashIcon id={id} onClick={onRemoveTransaction} />
-			</StyledTd>
+			<StyledTransactionDate>{parsedDate}</StyledTransactionDate>
+			<StyledTransactionType>{transactionType}</StyledTransactionType>
+			<StyledCategory>{category?.name}</StyledCategory>
+			<StyledComment>{comment}</StyledComment>
+			<StyledAmount type={type}>{formattedAmount}</StyledAmount>
+			<StyledBalanceAfter>
+				{formattedBalanceAfter} <StyledTrashIcon id={id} onClick={onRemoveTransaction} />
+			</StyledBalanceAfter>
 		</tr>
 	);
 };

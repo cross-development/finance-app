@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 //Components
 import { Register } from 'components/Auth';
-import { Notification } from 'components/Commons';
+import { Error } from 'components/Commons';
 //Redux
 import { authOperations } from 'redux/auth';
 import { useDispatch, useSelector } from 'react-redux';
@@ -48,7 +48,7 @@ const RegisterPage = () => {
 				onChange={handleChangeState}
 			/>
 
-			{error && <Notification message={error.message} />}
+			{error && <Error message={error.message} />}
 		</>
 	);
 };

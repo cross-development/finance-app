@@ -10,12 +10,13 @@ const BalanceInfo = () => {
 	const { items } = useSelector(state => state.transactions);
 
 	const currentBalance = items.length ? items[items.length - 1].balanceAfter : user.balance;
+	const balance = currentBalance.toLocaleString('ua-UA', { minimumFractionDigits: 2 });
 
 	return (
 		<StylesBalanceWrap>
 			<StyledTitle>Ваш баланс</StyledTitle>
 
-			<StyledBalance>&#8372; {currentBalance}</StyledBalance>
+			<StyledBalance>&#8372; {balance}</StyledBalance>
 		</StylesBalanceWrap>
 	);
 };

@@ -4,26 +4,32 @@ import React from 'react';
 import StatisticChart from './StatisticChart';
 import StatisticControls from './StatisticControls';
 import StatisticTable from './StatisticTable';
+//Redux
+// import { useSelector } from 'react-redux';
 //Styles
 import { StyledContainer, StyledTableWrap } from './Statistics.styles';
 import { StyledStatisticsWrap, StyledBackdrop, StyledTitle } from './Statistics.styles';
 
-const Statistics = () => (
-	<StyledStatisticsWrap>
-		<StyledBackdrop>
-			<StyledTitle>Статистика</StyledTitle>
+const Statistics = () => {
+	// const { loading } = useSelector(state => state.transactions);
 
-			<StyledContainer>
-				<StatisticChart />
+	return (
+		<StyledStatisticsWrap>
+			<StyledBackdrop>
+				<StyledTitle>Статистика</StyledTitle>
 
-				<StyledTableWrap>
-					<StatisticControls />
+				<StyledContainer>
+					<StatisticChart />
 
-					<StatisticTable />
-				</StyledTableWrap>
-			</StyledContainer>
-		</StyledBackdrop>
-	</StyledStatisticsWrap>
-);
+					<StyledTableWrap>
+						<StatisticControls />
+
+						<StatisticTable />
+					</StyledTableWrap>
+				</StyledContainer>
+			</StyledBackdrop>
+		</StyledStatisticsWrap>
+	);
+};
 
 export default Statistics;

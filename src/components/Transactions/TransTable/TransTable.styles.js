@@ -5,7 +5,7 @@ export const StyledTable = styled.table`
 	border-collapse: collapse;
 	margin: 0;
 	padding: 0;
-	table-layout: fixed;
+	/* table-layout: fixed; */
 	width: 100%;
 
 	& thead {
@@ -13,6 +13,9 @@ export const StyledTable = styled.table`
 		padding: 0.8em 0;
 
 		& tr th {
+			padding: 1em 0;
+			font-size: 18px;
+
 			&:first-child {
 				border-top-left-radius: 30px;
 				border-bottom-left-radius: 30px;
@@ -25,35 +28,23 @@ export const StyledTable = styled.table`
 		}
 	}
 
-	& tr {
-		background: transparent;
-		padding: 0.35em;
-		transition: all 250ms linear;
+	& tbody {
+		& tr {
+			transition: all 250ms linear;
+			font-size: 16px;
 
-		&:not(:first-child) {
-			border-top: 1px solid #d1d1d1;
-		}
+			& td {
+				padding-top: 0.8rem;
+				padding-bottom: 0.8rem;
+			}
 
-		&:hover {
-			background-color: #fff;
+			&:not(:first-child) {
+				border-top: 1px solid #d1d1d1;
+			}
+
+			&:hover {
+				background-color: #fff;
+			}
 		}
 	}
-
-	& th {
-		&:first-child {
-			padding: 1em 0;
-			font-size: 18px;
-		}
-	}
-
-	& th,
-	& td {
-		padding: 0.8em 0;
-		text-align: center;
-		font-size: 16px;
-	}
-
-	/* & td:nth-last-of-type(2) {
-		text-align: right;
-	} */
 `;

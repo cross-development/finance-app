@@ -23,7 +23,7 @@ const TransactionType = {
 const initialState = {
 	transactionDate: '',
 	type: TransactionType.INCOME,
-	categoryId: 'd9ee2284-4673-44f4-ab76-6258512ea409',
+	categoryId: '',
 	comment: '',
 	amount: 0,
 };

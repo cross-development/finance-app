@@ -29,10 +29,12 @@ const ExpCategories = ({ transactionType, categories, onChangeCategory }) => {
 
 	return (
 		<StyledLabel>
-			<StyledSelect name="categoryId" value={categories} onChange={onChangeCategory}>
-				<option value="" disabled>
-					Выберите категорию
-				</option>
+			<StyledSelect
+				name="categoryId"
+				value={categories || 'Выберите категорию'}
+				onChange={onChangeCategory}
+			>
+				<option disabled>Выберите категорию</option>
 
 				{memoCategories}
 			</StyledSelect>

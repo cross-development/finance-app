@@ -2,7 +2,6 @@
 import React, { useMemo } from 'react';
 // import PropTypes from 'prop-types';
 //Components
-// import moduleName from 'module'
 //Redux
 import { useSelector } from 'react-redux';
 //Styles
@@ -10,17 +9,21 @@ import { StyledTableItem } from './StatisticTable.styles';
 import { StyledTable, StyledIncomeRow, StyledExpenseRow } from './StatisticTable.styles';
 
 const StatisticTable = () => {
-	const { summary } = useSelector(state => state.transactions);
+	const { summary, loading } = useSelector(state => state.transactions);
 
 	const memoExpensesRow = useMemo(
 		() =>
 			summary &&
-			summary.categoriesSummary.reduce((acc, { name, type, total }) => {
+			summary?.categoriesSummary?.reduce((acc, { name, type, total }) => {
 				if (type === 'EXPENSE') {
 					const tableRow = (
 						<StyledTableItem key={name + total}>
 							<td>{name}</td>
-							<td>{(-1 * total).toFixed(2)}</td>
+							<td>
+								{(-1 * total).toLocaleString('ua-UA', {
+									minimumFractionDigits: 2,
+								})}
+							</td>
 						</StyledTableItem>
 					);
 
@@ -32,6 +35,17 @@ const StatisticTable = () => {
 		[summary],
 	);
 
+	const expenseSummary = (summary?.expenseSummary === 0
+		? summary.expenseSummary
+		: summary?.expenseSummary * -1
+	)?.toLocaleString('ua-UA', {
+		minimumFractionDigits: 2,
+	});
+
+	const incomeSummary = summary?.incomeSummary?.toLocaleString('ua-UA', {
+		minimumFractionDigits: 2,
+	});
+
 	return (
 		<StyledTable>
 			<thead>
@@ -41,19 +55,21 @@ const StatisticTable = () => {
 				</tr>
 			</thead>
 
-			<tbody>
-				{memoExpensesRow}
+			{!loading && (
+				<tbody>
+					{memoExpensesRow}
 
-				<StyledExpenseRow>
-					<td>Расходы:</td>
-					<td>{(summary?.expenseSummary * -1).toFixed(2)}</td>
-				</StyledExpenseRow>
+					<StyledExpenseRow>
+						<td>Расходы:</td>
+						<td>{expenseSummary}</td>
+					</StyledExpenseRow>
 
-				<StyledIncomeRow>
-					<td>Доходы:</td>
-					<td>{(summary?.incomeSummary * -1).toFixed(2)}</td>
-				</StyledIncomeRow>
-			</tbody>
+					<StyledIncomeRow>
+						<td>Доходы:</td>
+						<td>{incomeSummary}</td>
+					</StyledIncomeRow>
+				</tbody>
+			)}
 		</StyledTable>
 	);
 };
