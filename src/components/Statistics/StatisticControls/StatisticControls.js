@@ -1,57 +1,85 @@
 //Core
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 //Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { transactionsOperations } from 'redux/transactions';
+//Utils
+import prettyDate from 'utils/prettyDate';
 //Styles
 import { StyledLabel, StyledSelect, StyledSelectsWrap } from './StatisticControls.styles';
 
-const initialState = {
-	month: '',
-	year: '',
-};
-
 const StatisticControls = () => {
-	const [statisticsPeriod, setStatisticsPeriod] = useState(initialState);
-
-	const handleChangePeriod = ({ target: { name, value } }) =>
-		setStatisticsPeriod(prevState => ({ ...prevState, [name]: value }));
-
 	const dispatch = useDispatch();
-	const { items: transactions } = useSelector(state => state.transactions);
+
+	const [statMonthPeriod, setStatMonthPeriod] = useState('');
+	const [statYearPeriod, setStatYearPeriod] = useState('');
+
+	const handleChangeMonthPeriod = ({ target: { value } }) => setStatMonthPeriod(value);
+	const handleChangeYearPeriod = ({ target: { value } }) => {
+		setStatYearPeriod(value);
+		setStatMonthPeriod('');
+	};
 
 	useEffect(() => {
-		if (statisticsPeriod.month && statisticsPeriod.year) {
-			dispatch(transactionsOperations.getTransactionsSummary({ ...statisticsPeriod }));
+		if (statMonthPeriod && statYearPeriod) {
+			dispatch(transactionsOperations.getTransactionsSummary(statMonthPeriod, statYearPeriod));
 		}
-	}, [dispatch, statisticsPeriod, statisticsPeriod.month, statisticsPeriod.year]);
+	}, [dispatch, statMonthPeriod, statYearPeriod]);
+
+	const { items: transactions } = useSelector(state => state.transactions);
+
+	const memoYearsOptions = useMemo(
+		() =>
+			prettyDate.getUniqueYearsNumber(transactions).reduce((acc, item) => {
+				acc.push(
+					<option key={item} value={item}>
+						{item}
+					</option>,
+				);
+
+				return acc;
+			}, []),
+		[transactions],
+	);
+
+	const memoMonthOptions = useMemo(() => {
+		if (statYearPeriod) {
+			return prettyDate.getUniqueTransactions(transactions, statYearPeriod).reduce((acc, item) => {
+				const monthName = prettyDate.getMonthName(item.transactionDate);
+				const monthNumber = prettyDate.getMonthNumber(item.transactionDate);
+
+				const option = (
+					<option key={item.id} value={monthNumber}>
+						{monthName}
+					</option>
+				);
+
+				acc.push(option);
+
+				return acc;
+			}, []);
+		}
+	}, [statYearPeriod, transactions]);
 
 	return (
 		<StyledSelectsWrap>
 			<StyledLabel>
 				<StyledSelect
 					name="month"
-					value={statisticsPeriod.month || 'Месяц'}
-					onChange={handleChangePeriod}
+					value={statMonthPeriod || 'Месяц'}
+					onChange={handleChangeMonthPeriod}
 				>
 					<option disabled>Месяц</option>
 
-					<option value={10}>{'October'}</option>
-					<option value={11}>{'November'}</option>
-					<option value={12}>{'December'}</option>
+					{statYearPeriod && memoMonthOptions}
 				</StyledSelect>
 			</StyledLabel>
 
 			<StyledLabel>
-				<StyledSelect
-					name="year"
-					value={statisticsPeriod.year || 'Год'}
-					onChange={handleChangePeriod}
-				>
+				<StyledSelect name="year" value={statYearPeriod || 'Год'} onChange={handleChangeYearPeriod}>
 					<option disabled>Год</option>
 
-					<option value={2020}>{2020}</option>
-					<option value={2021}>{2021}</option>
+					{memoYearsOptions}
 				</StyledSelect>
 			</StyledLabel>
 		</StyledSelectsWrap>

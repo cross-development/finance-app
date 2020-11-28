@@ -58,7 +58,7 @@ const getTransactionCategories = () => dispatch => {
 		.catch(error => dispatch(transactionsActions.getTransactionCategoryFailure(error)));
 };
 
-const getTransactionsSummary = ({ month, year }) => dispatch => {
+const getTransactionsSummary = (month, year) => dispatch => {
 	dispatch(transactionsActions.getTransactionsSummaryRequest());
 
 	axios

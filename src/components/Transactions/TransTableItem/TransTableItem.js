@@ -1,9 +1,10 @@
 //Core
 import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 //Redux
 import { useSelector } from 'react-redux';
+//Utils
+import prettyDate from 'utils/prettyDate';
 //Styles
 import { StyledCategory, StyledComment } from './TransTableItem.styles';
 import { StyledTransactionDate, StyledTransactionType } from './TransTableItem.styles';
@@ -20,7 +21,7 @@ const TransTableItem = ({ transaction, onRemoveTransaction }) => {
 	]);
 
 	const transactionType = type === 'INCOME' ? '+' : '-';
-	const parsedDate = moment(transactionDate).format('DD.MM.YYYY');
+	const parsedDate = prettyDate.formatDate(transactionDate, 'DD.MM.YYYY');
 	const formattedAmount = amount.toLocaleString('ua-UA', { minimumFractionDigits: 2 });
 	const formattedBalanceAfter = balanceAfter.toLocaleString('ua-UA', { minimumFractionDigits: 2 });
 

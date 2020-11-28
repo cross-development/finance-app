@@ -1,6 +1,5 @@
 //Core
 import React, { useState, useEffect, useCallback } from 'react';
-import moment from 'moment';
 //Components
 import TypeSwitcher from './TypeSwitcher';
 import ExpCategories from './ExpCategories';
@@ -11,6 +10,8 @@ import ButtonsGroup from './ButtonsGroup';
 //Redux
 import { useDispatch } from 'react-redux';
 import { transactionsOperations } from 'redux/transactions';
+//Utils
+import prettyDate from 'utils/prettyDate';
 //Styles
 import { StyledModalWrap, StyledModalForm } from './ModalForm.styles';
 import { StyledFormTitle, StyledCloseButton, StyledInputsWrap } from './ModalForm.styles';
@@ -73,7 +74,7 @@ const ModalForm = ({ onToggleModalOpen }) => {
 		const transaction = {
 			...transactionInfo,
 			amount: type === TransactionType.EXPENSE ? parseFloat(-amount) : parseFloat(amount),
-			transactionDate: moment(transactionDate).format(),
+			transactionDate: prettyDate.formatDate(transactionDate),
 		};
 
 		dispatch(transactionsOperations.addTransaction({ transaction }));

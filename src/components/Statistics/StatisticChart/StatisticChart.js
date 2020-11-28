@@ -28,6 +28,8 @@ const StatisticChart = () => {
 				type: 'donut',
 			},
 
+			colors: ['#2E93fA', '#66DA26', '#546E7A', '#E91E63', '#FF9800'],
+
 			plotOptions: {
 				pie: {
 					donut: {
@@ -55,9 +57,8 @@ const StatisticChart = () => {
 
 			legend: {
 				show: true,
-				position: 'right',
+				position: 'bottom',
 				horizontalAlign: 'center',
-				floating: true,
 			},
 
 			responsive: [
