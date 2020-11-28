@@ -13,8 +13,8 @@ export const StyledAddButton = styled.button`
 	border-radius: 50%;
 	padding: 1rem;
 	position: absolute;
-	bottom: 2rem;
-	right: 5rem;
+	bottom: 1rem;
+	right: 1rem;
 	box-shadow: 0 0 14px #24cca7;
 	transition: all 250ms linear;
 

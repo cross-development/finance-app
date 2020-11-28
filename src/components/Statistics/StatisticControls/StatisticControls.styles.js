@@ -6,7 +6,7 @@ export const StyledSelectsWrap = styled.div`
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	margin-bottom: 2rem;
+	margin-bottom: 1.5rem;
 `;
 
 export const StyledLabel = styled.label`

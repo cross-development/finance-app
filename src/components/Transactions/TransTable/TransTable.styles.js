@@ -1,19 +1,38 @@
 //Core
 import styled from 'styled-components';
 
+export const StyledTableWrap = styled.div`
+	width: 100%;
+	height: 85%;
+	overflow: auto;
+
+	&::-webkit-scrollbar {
+		width: 10px;
+	}
+
+	&::-webkit-scrollbar-track {
+		background: #8c94ea;
+		border-radius: 30px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background: #6e78e8;
+		border-radius: 30px;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background: #616bd8;
+	}
+`;
+
 export const StyledTable = styled.table`
 	border-collapse: collapse;
-	margin: 0;
-	padding: 0;
-	/* table-layout: fixed; */
 	width: 100%;
 
 	& thead {
-		background: #fff;
-		padding: 0.8em 0;
-
 		& tr th {
-			padding: 1em 0;
+			background: #fff;
+			padding: 0.8em 0;
 			font-size: 18px;
 
 			&:first-child {

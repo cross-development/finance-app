@@ -7,9 +7,12 @@ import { StylesBalanceWrap, StyledTitle, StyledBalance } from './BalanceInfo.sty
 
 const BalanceInfo = () => {
 	const { user } = useSelector(state => state.auth);
-	const { items } = useSelector(state => state.transactions);
+	const { items: transactions } = useSelector(state => state.transactions);
 
-	const currentBalance = items.length ? items[items.length - 1].balanceAfter : user.balance;
+	const currentBalance = transactions.length
+		? transactions[transactions.length - 1].balanceAfter
+		: user.balance;
+
 	const balance = currentBalance.toLocaleString('ua-UA', { minimumFractionDigits: 2 });
 
 	return (

@@ -9,10 +9,11 @@ export const StyledTable = styled.table`
 	width: 100%;
 
 	& thead {
-		background: #fff;
-		padding: 0.8em 0;
-
 		& tr th {
+			background: #fff;
+			padding: 0.8em 0;
+			font-size: 18px;
+
 			&:first-child {
 				border-top-left-radius: 30px;
 				border-bottom-left-radius: 30px;
@@ -25,18 +26,20 @@ export const StyledTable = styled.table`
 		}
 	}
 
-	& th {
-		&:first-child {
-			padding: 1em 0;
-			font-size: 18px;
+	& tbody {
+		th {
+			&:first-child {
+				padding: 1em 0;
+				font-size: 18px;
+			}
 		}
-	}
 
-	& th,
-	& td {
-		padding: 0.8rem 0;
-		text-align: center;
-		font-size: 16px;
+		& th,
+		& td {
+			padding: 0.8rem 0;
+			text-align: center;
+			font-size: 16px;
+		}
 	}
 `;
 

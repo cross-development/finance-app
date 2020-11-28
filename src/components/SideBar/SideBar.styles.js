@@ -8,7 +8,7 @@ export const StyledSideBar = styled.aside`
 	background-repeat: no-repeat;
 	background-position: bottom left;
 	background-size: contain;
-	flex: 0 0 30%;
+	flex: 0 0 28%;
 	height: 90vh;
 	background-color: #e7eaf2;
 	display: flex;
