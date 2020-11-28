@@ -1,26 +1,14 @@
 //Core
 import React from 'react';
+import PropTypes from 'prop-types';
 //Components
 import Chart from 'react-apexcharts';
 import { Notification } from 'components/Commons';
 //Redux
 import { useSelector } from 'react-redux';
 
-const StatisticChart = () => {
+const StatisticChart = ({ chartColors, summaryName, summaryValue }) => {
 	const { user } = useSelector(state => state.auth);
-	const { summary } = useSelector(state => state.transactions);
-
-	const summaryName = summary?.categoriesSummary?.reduce((acc, { name, type }) => {
-		if (type === 'EXPENSE') acc.push(name);
-
-		return acc;
-	}, []);
-
-	const summaryValue = summary?.categoriesSummary?.reduce((acc, { type, total }) => {
-		if (type === 'EXPENSE') acc.push(-1 * total);
-
-		return acc;
-	}, []);
 
 	const chartOptions = {
 		options: {
@@ -28,7 +16,7 @@ const StatisticChart = () => {
 				type: 'donut',
 			},
 
-			colors: ['#2E93fA', '#66DA26', '#546E7A', '#E91E63', '#FF9800'],
+			colors: chartColors,
 
 			plotOptions: {
 				pie: {
@@ -57,8 +45,13 @@ const StatisticChart = () => {
 
 			legend: {
 				show: true,
-				position: 'bottom',
-				horizontalAlign: 'center',
+				width: 0,
+				height: 0,
+				fontSize: '0px',
+				markers: {
+					width: 0,
+					height: 0,
+				},
 			},
 
 			responsive: [
@@ -95,6 +88,15 @@ const StatisticChart = () => {
 			{summaryValue?.length < 1 && <Notification />}
 		</div>
 	);
+};
+
+StatisticChart.propTypes = {
+	chartColors: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.arrayOf(PropTypes.string.isRequired),
+	]),
+	summaryName: PropTypes.arrayOf(PropTypes.string.isRequired),
+	summaryValue: PropTypes.arrayOf(PropTypes.number.isRequired),
 };
 
 export default StatisticChart;

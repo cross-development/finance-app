@@ -1,24 +1,15 @@
 //Core
-import React, { useEffect } from 'react';
+import React from 'react';
 //Components
 import Statistics from 'components/Statistics';
+import { Loader } from 'components/Commons';
 //Redux
-import { useDispatch } from 'react-redux';
-import { transactionsOperations } from 'redux/transactions';
-//Utils
-import prettyDate from 'utils/prettyDate';
+import { useSelector } from 'react-redux';
 
 const StatisticsPage = () => {
-	const dispatch = useDispatch();
+	const { loading, summary } = useSelector(state => state.transactions);
 
-	useEffect(() => {
-		const month = prettyDate.getMonthNumber();
-		const year = prettyDate.getYearNumber();
-
-		dispatch(transactionsOperations.getTransactionsSummary(month, year));
-	}, [dispatch]);
-
-	return <Statistics />;
+	return loading ? <Loader onLoad={loading} /> : <Statistics summary={summary} />;
 };
 
 export default StatisticsPage;

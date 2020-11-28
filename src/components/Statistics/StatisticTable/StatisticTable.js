@@ -1,38 +1,35 @@
 //Core
 import React, { useMemo } from 'react';
-// import PropTypes from 'prop-types';
-//Components
+import PropTypes from 'prop-types';
 //Redux
 import { useSelector } from 'react-redux';
 //Styles
 import { StyledTableItem } from './StatisticTable.styles';
 import { StyledTable, StyledIncomeRow, StyledExpenseRow } from './StatisticTable.styles';
 
-const StatisticTable = () => {
+const StatisticTable = ({ transactionsInfo }) => {
 	const { summary, loading } = useSelector(state => state.transactions);
 
 	const memoExpensesRow = useMemo(
 		() =>
-			summary &&
-			summary?.categoriesSummary?.reduce((acc, { name, type, total }) => {
-				if (type === 'EXPENSE') {
-					const tableRow = (
-						<StyledTableItem key={name + total}>
-							<td>{name}</td>
-							<td>
-								{(-1 * total).toLocaleString('ua-UA', {
-									minimumFractionDigits: 2,
-								})}
-							</td>
-						</StyledTableItem>
-					);
+			transactionsInfo &&
+			transactionsInfo?.reduce((acc, { title, value, color }) => {
+				const tableRow = (
+					<StyledTableItem marker={color} key={title + color}>
+						<td>{title}</td>
+						<td>
+							{value.toLocaleString('ua-UA', {
+								minimumFractionDigits: 2,
+							})}
+						</td>
+					</StyledTableItem>
+				);
 
-					acc.push(tableRow);
-				}
+				acc.push(tableRow);
 
 				return acc;
 			}, []),
-		[summary],
+		[transactionsInfo],
 	);
 
 	const expenseSummary = (summary?.expenseSummary === 0
@@ -59,21 +56,33 @@ const StatisticTable = () => {
 				<tbody>
 					{memoExpensesRow}
 
-					<StyledExpenseRow>
-						<td>Расходы:</td>
-						<td>{expenseSummary}</td>
-					</StyledExpenseRow>
+					{summary && (
+						<>
+							<StyledExpenseRow>
+								<td>Расходы:</td>
+								<td>{expenseSummary}</td>
+							</StyledExpenseRow>
 
-					<StyledIncomeRow>
-						<td>Доходы:</td>
-						<td>{incomeSummary}</td>
-					</StyledIncomeRow>
+							<StyledIncomeRow>
+								<td>Доходы:</td>
+								<td>{incomeSummary}</td>
+							</StyledIncomeRow>
+						</>
+					)}
 				</tbody>
 			)}
 		</StyledTable>
 	);
 };
 
-// StatisticTable.propTypes = {};
+StatisticTable.propTypes = {
+	transactionsInfo: PropTypes.arrayOf(
+		PropTypes.exact({
+			title: PropTypes.string.isRequired,
+			value: PropTypes.number.isRequired,
+			color: PropTypes.string.isRequired,
+		}).isRequired,
+	),
+};
 
 export default StatisticTable;

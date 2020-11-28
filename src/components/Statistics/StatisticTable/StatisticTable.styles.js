@@ -75,7 +75,7 @@ export const StyledTableItem = styled(StyledRow)`
 			content: '';
 			width: 24px;
 			height: 24px;
-			background-color: #000;
+			background-color: ${({ marker }) => marker};
 		}
 	}
 `;

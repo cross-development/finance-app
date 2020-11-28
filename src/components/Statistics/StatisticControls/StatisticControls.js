@@ -1,5 +1,5 @@
 //Core
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 //Redux
 import { useDispatch, useSelector } from 'react-redux';
 import { transactionsOperations } from 'redux/transactions';
@@ -10,9 +10,10 @@ import { StyledLabel, StyledSelect, StyledSelectsWrap } from './StatisticControl
 
 const StatisticControls = () => {
 	const dispatch = useDispatch();
+	const { items: transactions, summary } = useSelector(state => state.transactions);
 
 	const [statMonthPeriod, setStatMonthPeriod] = useState('');
-	const [statYearPeriod, setStatYearPeriod] = useState('');
+	const [statYearPeriod, setStatYearPeriod] = useState('' || summary?.year);
 
 	const handleChangeMonthPeriod = ({ target: { value } }) => setStatMonthPeriod(value);
 	const handleChangeYearPeriod = ({ target: { value } }) => {
@@ -20,13 +21,13 @@ const StatisticControls = () => {
 		setStatMonthPeriod('');
 	};
 
-	useEffect(() => {
+	const callbackTransactionsSummary = useCallback(() => {
 		if (statMonthPeriod && statYearPeriod) {
 			dispatch(transactionsOperations.getTransactionsSummary(statMonthPeriod, statYearPeriod));
 		}
 	}, [dispatch, statMonthPeriod, statYearPeriod]);
 
-	const { items: transactions } = useSelector(state => state.transactions);
+	useEffect(() => callbackTransactionsSummary(), [callbackTransactionsSummary]);
 
 	const memoYearsOptions = useMemo(
 		() =>
@@ -66,7 +67,7 @@ const StatisticControls = () => {
 			<StyledLabel>
 				<StyledSelect
 					name="month"
-					value={statMonthPeriod || 'Месяц'}
+					value={statMonthPeriod || summary?.month || 'Месяц'}
 					onChange={handleChangeMonthPeriod}
 				>
 					<option disabled>Месяц</option>
