@@ -1,11 +1,17 @@
 //Core
 import React from 'react';
 import PropTypes from 'prop-types';
+//Styles
+import { StyledWrapper, StyledText } from './Notification.styles';
 
-const Notification = props => {
-	return <div>Расходов в этом месяце нет</div>;
+const Notification = ({ message }) => (
+	<StyledWrapper>
+		<StyledText>{message}</StyledText>
+	</StyledWrapper>
+);
+
+Notification.propTypes = {
+	message: PropTypes.string.isRequired,
 };
-
-Notification.propTypes = {};
 
 export default Notification;

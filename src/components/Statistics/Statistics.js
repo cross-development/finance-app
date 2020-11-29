@@ -5,6 +5,7 @@ import randomColor from 'randomcolor';
 import StatisticChart from './StatisticChart';
 import StatisticControls from './StatisticControls';
 import StatisticTable from './StatisticTable';
+import Notification from '../Commons/Notification';
 //Redux
 import { useSelector } from 'react-redux';
 //Styles
@@ -61,7 +62,13 @@ const Statistics = () => {
 				<StyledTitle>Статистика</StyledTitle>
 
 				<StyledContainer>
-					{memoChartComponent}
+					{summaryValue?.length > 0 && memoChartComponent}
+
+					{!summary && !summaryValue && <Notification message="Пожалуйста, укажите период." />}
+
+					{summary && transactionsInfo?.length < 1 && (
+						<Notification message="В этом месяце расходов нет." />
+					)}
 
 					<StyledTableWrap>
 						{memoControlsComponent}
