@@ -32,15 +32,13 @@ const prettyDate = {
 		let uniqueTransactionsItem = [];
 
 		const itemCheck = item => {
-			if (item.type === 'EXPENSE') {
-				const monthName = this.getMonthName(item.transactionDate);
+			const monthName = this.getMonthName(item.transactionDate);
 
-				if (uniqueTransactionsItem.indexOf(monthName) === -1) {
-					uniqueTransactionsItem.push(monthName);
-					return true;
-				}
-				return false;
+			if (uniqueTransactionsItem.indexOf(monthName) === -1) {
+				uniqueTransactionsItem.push(monthName);
+				return true;
 			}
+			return false;
 		};
 
 		const filterByTransactionMonth = item => {
