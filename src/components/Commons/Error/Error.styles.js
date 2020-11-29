@@ -3,22 +3,22 @@ import styled from 'styled-components';
 
 export const StyledErrorDiv = styled.div`
 	position: absolute;
-	bottom: 25%;
-	left: 45%;
+	bottom: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 	width: 32%;
 	height: auto;
-	background-color: #ec1940;
-	background: #ec1940;
+	background-color: #ff7675;
 	border: none;
 	border-radius: 2px;
 	padding: 20px;
 	margin: 0 auto;
 	word-wrap: normal;
 	transition: all 250ms linear;
-	box-shadow: 0 0 8px 0.2px #ec1940;
+	box-shadow: 0 0 8px 0.2px #ff7675;
 
 	&:hover {
-		box-shadow: 0 0 14px #ec1940;
+		box-shadow: 0 0 14px #ff7675;
 	}
 `;
 

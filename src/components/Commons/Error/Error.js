@@ -2,20 +2,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 //Redux
-// import { useDispatch } from 'react-redux';
-// import { unsetErrorMessage } from 'redux/auth/authOperations';
+import { useDispatch } from 'react-redux';
+import { authOperations } from 'redux/auth';
 //Styles
 import { StyledErrorDiv, StyledErrorP, StyledErrorBtn } from './Error.styles';
 
 const Error = ({ message }) => {
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-	// const handleCloseErrorWindow = () => dispatch(unsetErrorMessage());
-	//onClick={handleCloseErrorWindow}
+	const handleCloseErrorWindow = () => dispatch(authOperations.unsetErrorMessage());
 
 	return (
 		<StyledErrorDiv>
-			<StyledErrorBtn>&#10006;</StyledErrorBtn>
+			<StyledErrorBtn onClick={handleCloseErrorWindow}>&#10006;</StyledErrorBtn>
 			<StyledErrorP>{message}</StyledErrorP>
 		</StyledErrorDiv>
 	);
