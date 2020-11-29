@@ -67,6 +67,8 @@ const getCurrentUser = () => (dispatch, getState) => {
 		.catch(error => dispatch(authActions.getCurrentUserFailure(error)));
 };
 
-const authOperations = { userSignUp, userSignIn, userSighOut, getCurrentUser };
+const unsetErrorMessage = () => dispatch => dispatch(authActions.unsetErrorMessage());
+
+const authOperations = { userSignUp, userSignIn, userSighOut, getCurrentUser, unsetErrorMessage };
 
 export default authOperations;

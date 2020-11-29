@@ -25,6 +25,7 @@ const error = createReducer(null, {
 	[authActions.userSignUpFailure]: (state, { payload }) => payload,
 	[authActions.userSignInFailure]: (state, { payload }) => payload,
 	[authActions.userSighOutFailure]: (state, { payload }) => payload,
+	[authActions.unsetErrorMessage]: (state, { payload }) => null,
 });
 
 export default combineReducers({
