@@ -3,7 +3,10 @@ import axios from 'axios';
 //Redux
 import transactionsActions from './transactionsActions';
 
-axios.defaults.baseURL = 'https://sheltered-sea-54747.herokuapp.com';
+const proxyurl = 'https://cors-anywhere.herokuapp.com/';
+
+//Axios defaults config
+axios.defaults.baseURL = `${proxyurl}https://sheltered-sea-54747.herokuapp.com`;
 
 const addTransaction = ({ transaction }) => dispatch => {
 	dispatch(transactionsActions.addTransactionRequest());

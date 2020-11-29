@@ -2,23 +2,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 //Styles
-import { StyledBirthdayInfo, StyledLabel, StyledDatepicker } from './DataPicker.styles';
+import { StyledCalendarWrap, StyledLabel, StyledDatepicker } from './DataPicker.styles';
 
 const DataPicker = ({ transactionDate, onChangeTransaction }) => {
 	const date = transactionDate ? new Date(transactionDate) : '';
 
 	return (
-		<StyledBirthdayInfo>
+		<StyledCalendarWrap>
 			<StyledLabel>
 				<StyledDatepicker
-					name="birthday"
+					required
+					name="transactionDate"
 					format="dd/MM/y"
 					clearIcon={null}
 					value={date}
 					onChange={onChangeTransaction}
 				/>
 			</StyledLabel>
-		</StyledBirthdayInfo>
+		</StyledCalendarWrap>
 	);
 };
 
