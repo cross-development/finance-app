@@ -11,42 +11,25 @@ const initialState = {
 	username: '',
 	email: '',
 	password: '',
-	repassword: '',
+	confirmPassword: '',
 };
 
 const RegisterPage = () => {
-	const [state, setState] = useState(initialState);
-	const [progress, setProgress] = useState(20);
+	const [progress, setProgress] = useState(0);
 
 	const { error } = useSelector(state => state.auth);
 	const dispatch = useDispatch();
 
-	const handleChangeState = ({ target: { name, value } }) => {
-		setState(prevState => ({ ...prevState, [name]: value }));
-	};
-
-	const handleSubmit = e => {
-		e.preventDefault();
-
-		if (state.password !== state.repassword) {
-			return alert('BUUUUUUG');
-		}
-
-		const { username, email, password } = state;
+	const handleSubmit = values => {
+		const { username, email, password } = values;
 		const credential = { username, email, password };
 
 		dispatch(authOperations.userSignUp({ credential }));
-		setState(initialState);
 	};
 
 	return (
 		<>
-			<Register
-				userInfo={state}
-				progress={progress}
-				onSubmit={handleSubmit}
-				onChange={handleChangeState}
-			/>
+			<Register userInfo={initialState} progress={progress} handleSubmit={handleSubmit} />
 
 			{error && <Error message={error.message} />}
 		</>

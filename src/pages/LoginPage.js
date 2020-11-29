@@ -1,5 +1,5 @@
 //Core
-import React, { useState } from 'react';
+import React from 'react';
 //Components
 import { Login } from 'components/Auth';
 import { Error } from 'components/Commons';
@@ -13,24 +13,14 @@ const initialState = {
 };
 
 const LoginPage = () => {
-	const [state, setState] = useState(initialState);
-
-	const { error } = useSelector(state => state.auth);
 	const dispatch = useDispatch();
+	const { error } = useSelector(state => state.auth);
 
-	const handleChangeState = ({ target: { name, value } }) =>
-		setState(prevState => ({ ...prevState, [name]: value }));
-
-	const handleSubmit = e => {
-		e.preventDefault();
-
-		dispatch(authOperations.userSignIn({ ...state }));
-		setState(initialState);
-	};
+	const handleSubmit = values => dispatch(authOperations.userSignIn({ ...values }));
 
 	return (
 		<>
-			<Login {...state} onSubmit={handleSubmit} onChange={handleChangeState} />
+			<Login userInfo={initialState} handleSubmit={handleSubmit} />
 
 			{error && <Error message={error.message} />}
 		</>

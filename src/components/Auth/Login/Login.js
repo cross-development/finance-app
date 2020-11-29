@@ -1,12 +1,19 @@
 //Core
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
 //Styles
 import { StyledLoginWrap, StyledPromoImg, StyledLogoWrap } from './Login.styles';
 import { StyledH1, StyledButton, StyledLink, StyledFormWrap } from './Login.styles';
 import { StylesForm, StyledLabel, StyledInput, StyledBackdrop } from './Login.styles';
 
-const Login = ({ email, password, onSubmit, onChange }) => (
+const SignupSchema = Yup.object().shape({
+	email: Yup.string().email('Invalid email').required('Required'),
+	password: Yup.string().min(4, 'Too Short!').max(50, 'Too Long!').required('Required'),
+});
+
+const Login = ({ userInfo, handleSubmit }) => (
 	<StyledLoginWrap>
 		<StyledLogoWrap>
 			<StyledPromoImg src={`${process.env.PUBLIC_URL}/img/walletPromo1.png`} />
@@ -14,47 +21,62 @@ const Login = ({ email, password, onSubmit, onChange }) => (
 
 		<StyledBackdrop>
 			<StyledFormWrap>
-				<StylesForm onSubmit={onSubmit}>
-					<StyledH1>Wallet</StyledH1>
+				<Formik
+					initialValues={userInfo}
+					validationSchema={SignupSchema}
+					onSubmit={(values, actions) => {
+						handleSubmit(values);
+						actions.setSubmitting(false);
+						actions.resetForm({ values: userInfo });
+					}}
+				>
+					{({ handleChange, values, touched, isValid, errors }) => (
+						<StylesForm>
+							<StyledH1>Wallet</StyledH1>
 
-					<StyledLabel>
-						<StyledInput
-							required
-							type="email"
-							name="email"
-							value={email}
-							autoComplete="off"
-							placeholder="E-mail"
-							onChange={onChange}
-						/>
-					</StyledLabel>
+							<StyledLabel>
+								<StyledInput
+									required
+									type="email"
+									name="email"
+									value={values.email}
+									autoComplete="off"
+									placeholder="E-mail"
+									onChange={handleChange}
+								/>
+								{errors.email && touched.email ? <div>{errors.email}</div> : null}
+							</StyledLabel>
 
-					<StyledLabel>
-						<StyledInput
-							required
-							type="password"
-							name="password"
-							value={password}
-							autoComplete="off"
-							placeholder="Пароль"
-							onChange={onChange}
-						/>
-					</StyledLabel>
+							<StyledLabel>
+								<StyledInput
+									required
+									type="password"
+									name="password"
+									value={values.password}
+									autoComplete="off"
+									placeholder="Пароль"
+									onChange={handleChange}
+								/>
+								{errors.password && touched.password ? <div>{errors.password}</div> : null}
+							</StyledLabel>
 
-					<StyledButton type="submit">Вход</StyledButton>
+							<StyledButton type="submit">Вход</StyledButton>
 
-					<StyledLink to="/register">Регистрация</StyledLink>
-				</StylesForm>
+							<StyledLink to="/register">Регистрация</StyledLink>
+						</StylesForm>
+					)}
+				</Formik>
 			</StyledFormWrap>
 		</StyledBackdrop>
 	</StyledLoginWrap>
 );
 
 Login.propTypes = {
-	email: PropTypes.string.isRequired,
-	password: PropTypes.string.isRequired,
-	onSubmit: PropTypes.func.isRequired,
-	onChange: PropTypes.func.isRequired,
+	userInfo: PropTypes.exact({
+		email: PropTypes.string.isRequired,
+		password: PropTypes.string.isRequired,
+	}).isRequired,
+	handleSubmit: PropTypes.func.isRequired,
 };
 
 export default Login;

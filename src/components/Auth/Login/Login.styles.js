@@ -1,6 +1,7 @@
 //Core
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { Form, Field } from 'formik';
 import EllipseBlue from 'assets/EllipseBlue.png';
 import EllipseOrange from 'assets/EllipseOrange.png';
 
@@ -52,7 +53,7 @@ export const StyledFormWrap = styled.div`
 	backdrop-filter: blur(8px);
 `;
 
-export const StylesForm = styled.form`
+export const StylesForm = styled(Form)`
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
@@ -80,7 +81,7 @@ export const StyledLabel = styled.label`
 	}
 `;
 
-export const StyledInput = styled.input`
+export const StyledInput = styled(Field)`
 	display: block;
 	color: #171718;
 	font-size: 1.1rem;
