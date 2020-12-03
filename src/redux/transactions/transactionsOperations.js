@@ -7,6 +7,7 @@ const proxyurl = 'https://cors-anywhere.herokuapp.com/';
 
 //Axios defaults config
 axios.defaults.baseURL = `${proxyurl}https://sheltered-sea-54747.herokuapp.com`;
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 const addTransaction = ({ transaction }) => dispatch => {
 	dispatch(transactionsActions.addTransactionRequest());
