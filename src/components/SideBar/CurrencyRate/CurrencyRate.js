@@ -1,5 +1,7 @@
 //Core
 import React, { useState, useEffect, useMemo } from 'react';
+//Components
+import { Spinner } from 'components/Commons';
 //Services
 import { getLatestCurrency } from 'services/currencyAPI';
 //Styles
@@ -15,7 +17,9 @@ const CurrencyRate = () => {
 
 	const newCurrency = useMemo(() => currency.filter(({ ccy }) => ccy !== 'BTC'), [currency]);
 
-	return (
+	return newCurrency.length === 0 ? (
+		<Spinner onLoad={newCurrency.length === 0} />
+	) : (
 		<StylesCurrencyWrap>
 			<StyledTable>
 				<thead>
@@ -27,13 +31,14 @@ const CurrencyRate = () => {
 				</thead>
 
 				<tbody>
-					{newCurrency.map(({ ccy, buy, sale }) => (
-						<tr key={ccy}>
-							<td>{ccy}</td>
-							<td>{parseFloat(buy).toFixed(3)}</td>
-							<td>{parseFloat(sale).toFixed(3)}</td>
-						</tr>
-					))}
+					{newCurrency.length > 0 &&
+						newCurrency.map(({ ccy, buy, sale }) => (
+							<tr key={ccy}>
+								<td>{ccy}</td>
+								<td>{parseFloat(buy).toFixed(3)}</td>
+								<td>{parseFloat(sale).toFixed(3)}</td>
+							</tr>
+						))}
 				</tbody>
 			</StyledTable>
 		</StylesCurrencyWrap>

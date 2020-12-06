@@ -9,7 +9,6 @@ export const StylesCurrencyWrap = styled.div`
 	background-position: bottom;
 	background-repeat: no-repeat;
 	width: 100%;
-	/* height: 200px; */
 	border-radius: 30px;
 	overflow: hidden;
 `;

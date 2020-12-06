@@ -4,43 +4,58 @@ import { Link } from 'react-router-dom';
 import { Form, Field } from 'formik';
 import EllipseBlue from 'assets/EllipseBlue.png';
 import EllipseOrange from 'assets/EllipseOrange.png';
+import Promo2 from 'assets/walletPromo2.png';
 
 export const StyledRegisterWrap = styled.div`
-	display: flex;
-	flex-direction: row;
-	justify-content: space-evenly;
-	align-items: center;
 	height: 100vh;
 	width: 100%;
-	background-color: #e7eaf2;
+
+	@media (min-width: 768px) {
+		display: flex;
+		flex-direction: row;
+		background-color: #e7eaf2;
+		background-image: url(${EllipseBlue});
+		background-repeat: no-repeat;
+		background-position: bottom left;
+		background-size: 40%;
+	}
 `;
 
-export const StyledLogoWrap = styled.div`
-	background-image: url(${EllipseBlue});
-	background-repeat: no-repeat;
-	background-position: bottom;
-	background-size: contain;
-	width: 40%;
-	height: 100vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+export const StyledPromoWrap = styled.div`
+	@media (min-width: 768px) {
+		width: 70%;
+		height: 25vh;
+		background-image: url(${Promo2});
+		background-repeat: no-repeat;
+		background-position: left;
+		background-size: contain;
+	}
+
+	@media (min-width: 1440px) {
+		height: 60vh;
+		background-position: center;
+	}
 `;
 
-export const StyledPromoImg = styled.img`
-	width: 70%;
-	height: auto;
-`;
+export const StyledContainer = styled.div`
+	@media (min-width: 768px) {
+		background-image: url(${EllipseOrange});
+		background-repeat: no-repeat;
+		background-position: top right;
+		background-size: 70%;
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-evenly;
+		/* padding-top: 5rem; */
+	}
 
-export const StyledBackdrop = styled.div`
-	background-image: url(${EllipseOrange});
-	background-repeat: no-repeat;
-	background-position: top;
-	background-size: contain;
-	width: 60%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	@media (min-width: 1440px) {
+		flex-direction: row;
+		padding-top: 0;
+		background-size: 50%;
+	}
 `;
 
 export const StyledFormWrap = styled.div`
@@ -49,20 +64,35 @@ export const StyledFormWrap = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: rgba(255, 255, 255, 0.4);
-	backdrop-filter: blur(8px);
+
+	@media (min-width: 768px) {
+		height: auto;
+		width: 70%;
+	}
+
+	@media (min-width: 1440px) {
+		height: 100vh;
+		background: rgba(255, 255, 255, 0.4);
+		backdrop-filter: blur(8px);
+	}
 `;
 
 export const StyledForm = styled(Form)`
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-start;
-	background-color: #fff;
 	padding: 2rem 3rem;
-	width: 60%;
-	height: 80%;
-	border: none;
-	border-radius: 20px;
+	width: 100%;
+
+	@media (min-width: 768px) {
+		justify-content: flex-start;
+		background-color: #fff;
+		border: none;
+		border-radius: 20px;
+	}
+
+	@media (min-width: 1440px) {
+		width: 60%;
+	}
 `;
 
 export const StyledH1 = styled.h1`
@@ -106,7 +136,7 @@ export const StyledButton = styled.button`
 	cursor: pointer;
 	transition: all 250ms linear;
 	outline: none;
-	width: 50%;
+	width: 100%;
 	margin: 0 auto;
 	font-size: 1.1em;
 	text-transform: uppercase;
@@ -114,6 +144,10 @@ export const StyledButton = styled.button`
 
 	&:hover {
 		box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+	}
+
+	@media (min-width: 1440px) {
+		width: 50%;
 	}
 `;
 
@@ -126,7 +160,7 @@ export const StyledLink = styled(Link)`
 	cursor: pointer;
 	transition: all 250ms linear;
 	outline: none;
-	width: 50%;
+	width: 100%;
 	margin: 0 auto;
 	text-transform: uppercase;
 	text-align: center;
@@ -135,5 +169,9 @@ export const StyledLink = styled(Link)`
 
 	&:hover {
 		box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.3);
+	}
+
+	@media (min-width: 1440px) {
+		width: 50%;
 	}
 `;

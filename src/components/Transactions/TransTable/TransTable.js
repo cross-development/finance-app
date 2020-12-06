@@ -35,6 +35,7 @@ const TransTable = () => {
 					<tbody>
 						{transactions.length > 0 &&
 							[...transactions]
+								.sort((a, b) => Date.parse(a.balanceAfter) - Date.parse(b.balanceAfter))
 								.sort((a, b) => Date.parse(b.transactionDate) - Date.parse(a.transactionDate))
 								.map(transaction => (
 									<TransTableItem

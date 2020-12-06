@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 //Styles
-import { StyledLoginWrap, StyledPromoImg, StyledLogoWrap } from './Login.styles';
+import { StyledLoginWrap, StyledPromoWrap } from './Login.styles';
 import { StyledH1, StyledButton, StyledLink, StyledFormWrap } from './Login.styles';
-import { StylesForm, StyledLabel, StyledInput, StyledBackdrop } from './Login.styles';
+import { StylesForm, StyledLabel, StyledInput, StyledContainer } from './Login.styles';
 
 const SignupSchema = Yup.object().shape({
 	email: Yup.string().email('Invalid email').required('Required'),
@@ -15,11 +15,9 @@ const SignupSchema = Yup.object().shape({
 
 const Login = ({ userInfo, handleSubmit }) => (
 	<StyledLoginWrap>
-		<StyledLogoWrap>
-			<StyledPromoImg src={`${process.env.PUBLIC_URL}/img/walletPromo1.png`} />
-		</StyledLogoWrap>
+		<StyledContainer>
+			<StyledPromoWrap />
 
-		<StyledBackdrop>
 			<StyledFormWrap>
 				<Formik
 					initialValues={userInfo}
@@ -67,7 +65,7 @@ const Login = ({ userInfo, handleSubmit }) => (
 					)}
 				</Formik>
 			</StyledFormWrap>
-		</StyledBackdrop>
+		</StyledContainer>
 	</StyledLoginWrap>
 );
 

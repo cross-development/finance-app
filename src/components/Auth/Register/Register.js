@@ -6,9 +6,9 @@ import * as Yup from 'yup';
 //Components
 import ProgressBar from '@ramonak/react-progress-bar';
 //Styles
+import { StyledPromoWrap, StyledLink, StyledContainer } from './Register.styles';
 import { StyledH1, StyledRegisterWrap, StyledFormWrap } from './Register.styles';
 import { StyledForm, StyledLabel, StyledInput, StyledButton } from './Register.styles';
-import { StyledLogoWrap, StyledPromoImg, StyledLink, StyledBackdrop } from './Register.styles';
 
 const SignupSchema = Yup.object().shape({
 	username: Yup.string().min(4, 'Too Short!').max(50, 'Too Long!').required('Required'),
@@ -21,11 +21,9 @@ const SignupSchema = Yup.object().shape({
 
 const Register = ({ userInfo, progress, handleSubmit }) => (
 	<StyledRegisterWrap>
-		<StyledLogoWrap>
-			<StyledPromoImg src={`${process.env.PUBLIC_URL}/img/walletPromo2.png`} />
-		</StyledLogoWrap>
+		<StyledContainer>
+			<StyledPromoWrap />
 
-		<StyledBackdrop>
 			<StyledFormWrap>
 				<Formik
 					initialValues={userInfo}
@@ -103,7 +101,7 @@ const Register = ({ userInfo, progress, handleSubmit }) => (
 					)}
 				</Formik>
 			</StyledFormWrap>
-		</StyledBackdrop>
+		</StyledContainer>
 	</StyledRegisterWrap>
 );
 
