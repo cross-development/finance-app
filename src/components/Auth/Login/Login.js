@@ -3,8 +3,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+//Assets
+import Logo from 'assets/logo.png';
 //Styles
-import { StyledLoginWrap, StyledPromoWrap } from './Login.styles';
+import { StyledEmailIcon, StyledPassIcon } from './Login.styles';
+import { StyledRequireMessage, StyledLogo } from './Login.styles';
+import { StyledLoginWrap, StyledPromoWrap, StyledLogoWrap } from './Login.styles';
 import { StyledH1, StyledButton, StyledLink, StyledFormWrap } from './Login.styles';
 import { StylesForm, StyledLabel, StyledInput, StyledContainer } from './Login.styles';
 
@@ -30,9 +34,14 @@ const Login = ({ userInfo, handleSubmit }) => (
 				>
 					{({ handleChange, values, touched, isValid, errors }) => (
 						<StylesForm>
-							<StyledH1>Wallet</StyledH1>
+							<StyledLogoWrap>
+								<StyledLogo src={Logo} alt="logo" />
+								<StyledH1>Wallet</StyledH1>
+							</StyledLogoWrap>
 
 							<StyledLabel>
+								<StyledEmailIcon />
+
 								<StyledInput
 									required
 									type="email"
@@ -42,10 +51,14 @@ const Login = ({ userInfo, handleSubmit }) => (
 									placeholder="E-mail"
 									onChange={handleChange}
 								/>
-								{errors.email && touched.email ? <div>{errors.email}</div> : null}
+								{errors.email && touched.email ? (
+									<StyledRequireMessage>{errors.email}</StyledRequireMessage>
+								) : null}
 							</StyledLabel>
 
 							<StyledLabel>
+								<StyledPassIcon />
+
 								<StyledInput
 									required
 									type="password"
@@ -55,7 +68,9 @@ const Login = ({ userInfo, handleSubmit }) => (
 									placeholder="Пароль"
 									onChange={handleChange}
 								/>
-								{errors.password && touched.password ? <div>{errors.password}</div> : null}
+								{errors.password && touched.password ? (
+									<StyledRequireMessage>{errors.password}</StyledRequireMessage>
+								) : null}
 							</StyledLabel>
 
 							<StyledButton type="submit">Вход</StyledButton>

@@ -28,8 +28,28 @@ const error = createReducer(null, {
 	[authActions.unsetErrorMessage]: (state, { payload }) => null,
 });
 
+//Loading reducer
+const loading = createReducer(false, {
+	[authActions.getCurrentUserRequest]: () => true,
+	[authActions.getCurrentUserSuccess]: () => false,
+	[authActions.getCurrentUserFailure]: () => false,
+
+	[authActions.userSignUpRequest]: () => true,
+	[authActions.userSignUpSuccess]: () => false,
+	[authActions.userSignUpFailure]: () => false,
+
+	[authActions.userSignInRequest]: () => true,
+	[authActions.userSignInSuccess]: () => false,
+	[authActions.userSignInFailure]: () => false,
+
+	[authActions.userSighOutRequest]: () => true,
+	[authActions.userSighOutSuccess]: () => false,
+	[authActions.userSighOutFailure]: () => false,
+});
+
 export default combineReducers({
 	user,
 	token,
 	error,
+	loading,
 });

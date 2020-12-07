@@ -5,17 +5,21 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 //Components
 import ProgressBar from '@ramonak/react-progress-bar';
+//Assets
+import Logo from 'assets/logo.png';
 //Styles
-import { StyledPromoWrap, StyledLink, StyledContainer } from './Register.styles';
+import { StyledRequireMessage, StyledButton } from './Register.styles';
 import { StyledH1, StyledRegisterWrap, StyledFormWrap } from './Register.styles';
-import { StyledForm, StyledLabel, StyledInput, StyledButton } from './Register.styles';
+import { StyledEmailIcon, StyledPassIcon, StylesNameIcon } from './Register.styles';
+import { StyledForm, StyledLabel, StyledInput, StyledLogo } from './Register.styles';
+import { StyledPromoWrap, StyledLink, StyledContainer, StyledLogoWrap } from './Register.styles';
 
 const SignupSchema = Yup.object().shape({
 	username: Yup.string().min(4, 'Too Short!').max(50, 'Too Long!').required('Required'),
 	email: Yup.string().email('Invalid email').required('Required'),
 	password: Yup.string().min(4, 'Too Short!').max(50, 'Too Long!').required('Required'),
 	confirmPassword: Yup.string()
-		.required()
+		.required('Required')
 		.oneOf([Yup.ref('password'), null], 'Passwords must match'),
 });
 
@@ -36,9 +40,14 @@ const Register = ({ userInfo, progress, handleSubmit }) => (
 				>
 					{({ handleChange, values, touched, isValid, errors }) => (
 						<StyledForm>
-							<StyledH1>Wallet</StyledH1>
+							<StyledLogoWrap>
+								<StyledLogo src={Logo} alt="logo" />
+								<StyledH1>Wallet</StyledH1>
+							</StyledLogoWrap>
 
 							<StyledLabel>
+								<StyledEmailIcon />
+
 								<StyledInput
 									required
 									type="email"
@@ -48,10 +57,14 @@ const Register = ({ userInfo, progress, handleSubmit }) => (
 									placeholder="E-mail"
 									onChange={handleChange}
 								/>
-								{errors.email && touched.email ? <div>{errors.email}</div> : null}
+								{errors.email && touched.email ? (
+									<StyledRequireMessage>{errors.email}</StyledRequireMessage>
+								) : null}
 							</StyledLabel>
 
 							<StyledLabel>
+								<StyledPassIcon />
+
 								<StyledInput
 									required
 									type="password"
@@ -61,10 +74,14 @@ const Register = ({ userInfo, progress, handleSubmit }) => (
 									placeholder="Пароль"
 									onChange={handleChange}
 								/>
-								{errors.password && touched.password ? <div>{errors.password}</div> : null}
+								{errors.password && touched.password ? (
+									<StyledRequireMessage>{errors.password}</StyledRequireMessage>
+								) : null}
 							</StyledLabel>
 
 							<StyledLabel>
+								<StyledPassIcon />
+
 								<StyledInput
 									required
 									type="password"
@@ -75,13 +92,15 @@ const Register = ({ userInfo, progress, handleSubmit }) => (
 									onChange={handleChange}
 								/>
 								{errors.confirmPassword && touched.confirmPassword ? (
-									<div>{errors.confirmPassword}</div>
+									<StyledRequireMessage>{errors.confirmPassword}</StyledRequireMessage>
 								) : null}
 							</StyledLabel>
 
 							<ProgressBar height="10px" labelSize="0px" bgcolor="#24CCA7" completed={progress} />
 
 							<StyledLabel>
+								<StylesNameIcon />
+
 								<StyledInput
 									required
 									type="text"
@@ -91,7 +110,9 @@ const Register = ({ userInfo, progress, handleSubmit }) => (
 									placeholder="Ваше имя"
 									onChange={handleChange}
 								/>
-								{errors.username && touched.username ? <div>{errors.username}</div> : null}
+								{errors.username && touched.username ? (
+									<StyledRequireMessage>{errors.username}</StyledRequireMessage>
+								) : null}
 							</StyledLabel>
 
 							<StyledButton type="submit">Регистрация</StyledButton>

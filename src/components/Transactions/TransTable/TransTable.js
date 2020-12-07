@@ -1,5 +1,6 @@
 //Core
 import React from 'react';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 //Components
 import TransTableItem from '../TransTableItem';
 //Redux
@@ -7,10 +8,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { transactionsOperations } from 'redux/transactions';
 //Styles
 import { StyledTable, StyledTableWrap } from './TransTable.styles';
+import fadeTransactionItem from 'animations/fadeTransactionItem.module.css';
 
 const TransTable = () => {
 	const { items: transactions } = useSelector(state => state.transactions);
+
 	const dispatch = useDispatch();
+	// .sort((a, b) => a.balanceAfter - b.balanceAfter)
 
 	const handleRemoveTransaction = ({ currentTarget: { id } }) =>
 		dispatch(transactionsOperations.removeTransaction(id));
@@ -32,19 +36,23 @@ const TransTable = () => {
 
 			<StyledTableWrap>
 				<StyledTable>
-					<tbody>
+					<TransitionGroup component="tbody">
 						{transactions.length > 0 &&
 							[...transactions]
-								.sort((a, b) => Date.parse(a.balanceAfter) - Date.parse(b.balanceAfter))
-								.sort((a, b) => Date.parse(b.transactionDate) - Date.parse(a.transactionDate))
+								.sort((a, b) => b.transactionDate - a.transactionDate)
 								.map(transaction => (
-									<TransTableItem
+									<CSSTransition
 										key={transaction.id}
-										transaction={transaction}
-										onRemoveTransaction={handleRemoveTransaction}
-									/>
+										timeout={250}
+										classNames={fadeTransactionItem}
+									>
+										<TransTableItem
+											transaction={transaction}
+											onRemoveTransaction={handleRemoveTransaction}
+										/>
+									</CSSTransition>
 								))}
-					</tbody>
+					</TransitionGroup>
 				</StyledTable>
 			</StyledTableWrap>
 		</>

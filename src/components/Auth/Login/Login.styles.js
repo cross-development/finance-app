@@ -5,6 +5,7 @@ import { Form, Field } from 'formik';
 import EllipseBlue from 'assets/EllipseBlue.png';
 import EllipseOrange from 'assets/EllipseOrange.png';
 import Promo1 from 'assets/walletPromo1.png';
+import { FaEnvelope, FaLock } from 'react-icons/fa';
 
 export const StyledLoginWrap = styled.div`
 	height: 100vh;
@@ -97,14 +98,27 @@ export const StylesForm = styled(Form)`
 	}
 `;
 
+export const StyledLogoWrap = styled.div`
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: flex-end;
+`;
+
 export const StyledH1 = styled.h1`
-	font-size: 2em;
+	font-size: 30px;
 	font-weight: 700;
-	margin-bottom: 0.5rem;
-	text-align: center;
+`;
+
+export const StyledLogo = styled.img`
+	width: 40px;
+	height: 40px;
+	display: block;
+	margin-right: 1rem;
 `;
 
 export const StyledLabel = styled.label`
+	position: relative;
 	display: block;
 	margin-top: 2rem;
 
@@ -117,7 +131,7 @@ export const StyledInput = styled(Field)`
 	display: block;
 	color: #171718;
 	font-size: 1.1rem;
-	padding: 6px 20px;
+	padding: 6px 20px 6px 30px;
 	margin-top: 0.2rem;
 	border: none;
 	border-bottom: 2px solid #e0e0e0;
@@ -172,4 +186,43 @@ export const StyledLink = styled(Link)`
 	@media (min-width: 1440px) {
 		width: 50%;
 	}
+`;
+
+export const StyledRequireMessage = styled.div`
+	position: absolute;
+	bottom: 26px;
+	right: 0;
+	background-color: #ff6596;
+	color: #fff;
+	padding: 0.2rem 0.4rem;
+	border-radius: 4px;
+	font-size: 12px;
+	box-shadow: 0 0 8px #ff6596;
+
+	&::before {
+		content: '';
+		display: block;
+		width: 10px;
+		height: 10px;
+		position: absolute;
+		bottom: -6px;
+		border-bottom-left-radius: 50px;
+		border-bottom-right-radius: 50px;
+		left: 0;
+		background-color: #ff6596;
+	}
+`;
+
+export const StyledEmailIcon = styled(FaEnvelope)`
+	position: absolute;
+	bottom: 12px;
+	left: 0;
+	color: #e0e0e0;
+`;
+
+export const StyledPassIcon = styled(FaLock)`
+	position: absolute;
+	bottom: 12px;
+	left: 0;
+	color: #e0e0e0;
 `;

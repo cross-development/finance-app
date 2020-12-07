@@ -4,8 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { FaHome, FaChartPie, FaDollarSign } from 'react-icons/fa';
 
 export const StylesNavigationWrap = styled.div`
-	/* width: 80%; */
-	/* margin: 0 auto; */
+	padding-top: 2rem;
 `;
 
 export const StyledNavigation = styled.ul`

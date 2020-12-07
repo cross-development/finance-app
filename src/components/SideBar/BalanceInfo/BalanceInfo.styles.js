@@ -10,7 +10,7 @@ export const StylesBalanceWrap = styled.div`
 	border-radius: 30px;
 	padding: 1rem 2rem;
 	width: 100%;
-	/* margin: 3rem 0; */
+	margin: 3rem 0;
 `;
 
 export const StyledTitle = styled.p`

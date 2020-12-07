@@ -9,6 +9,7 @@ export const StylesCurrencyWrap = styled.div`
 	background-position: bottom;
 	background-repeat: no-repeat;
 	width: 100%;
+	min-height: 220px;
 	border-radius: 30px;
 	overflow: hidden;
 `;
@@ -38,5 +39,3 @@ export const StyledTable = styled.table`
 		padding: 1rem 0;
 	}
 `;
-
-// export const

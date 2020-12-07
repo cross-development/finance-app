@@ -9,6 +9,7 @@ import { StylesBalanceWrap, StyledTitle, StyledBalance } from './BalanceInfo.sty
 
 const BalanceInfo = () => {
 	const { items: transactions, loading } = useSelector(state => state.transactions);
+	const { user } = useSelector(state => state.auth);
 
 	const memoTransactions = useMemo(
 		() =>
@@ -18,7 +19,7 @@ const BalanceInfo = () => {
 		[transactions],
 	);
 
-	const balance = memoTransactions[0]?.balanceAfter.toLocaleString('ua-UA', {
+	const balance = user?.balance?.toLocaleString('ua-UA', {
 		minimumFractionDigits: 2,
 	});
 
@@ -26,7 +27,7 @@ const BalanceInfo = () => {
 		<StylesBalanceWrap>
 			<StyledTitle>Ваш баланс</StyledTitle>
 
-			{loading ? <Spinner onLoad={loading} /> : <StyledBalance>&#8372; {balance}</StyledBalance>}
+			<StyledBalance>&#8372; {balance}</StyledBalance>
 		</StylesBalanceWrap>
 	);
 };
