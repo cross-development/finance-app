@@ -33,6 +33,8 @@ export const StyledDatepicker = styled(DatePicker)`
 		font-size: 1em;
 
 		& .react-date-picker__inputGroup .react-date-picker__inputGroup__input {
+			background: transparent;
+
 			&::placeholder {
 				text-align: center;
 			}

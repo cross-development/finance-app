@@ -38,20 +38,14 @@ const TransTable = () => {
 				<StyledTable>
 					<TransitionGroup component="tbody">
 						{transactions.length > 0 &&
-							[...transactions]
-								.sort((a, b) => b.transactionDate - a.transactionDate)
-								.map(transaction => (
-									<CSSTransition
-										key={transaction.id}
-										timeout={250}
-										classNames={fadeTransactionItem}
-									>
-										<TransTableItem
-											transaction={transaction}
-											onRemoveTransaction={handleRemoveTransaction}
-										/>
-									</CSSTransition>
-								))}
+							[...transactions].reverse().map(transaction => (
+								<CSSTransition key={transaction.id} timeout={250} classNames={fadeTransactionItem}>
+									<TransTableItem
+										transaction={transaction}
+										onRemoveTransaction={handleRemoveTransaction}
+									/>
+								</CSSTransition>
+							))}
 					</TransitionGroup>
 				</StyledTable>
 			</StyledTableWrap>

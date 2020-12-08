@@ -9,6 +9,7 @@ export const StyledLabel = styled.label`
 	width: 100%;
 	color: #5b6378;
 	margin-bottom: 3rem;
+	position: relative;
 `;
 
 export const StyledSelect = styled.select`

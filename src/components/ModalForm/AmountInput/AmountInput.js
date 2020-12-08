@@ -7,10 +7,12 @@ import { StyledAmountInput, StyledAmountLabel } from './AmountInput.styles';
 const AmountInput = ({ amount, onChangeTransactionInfo }) => (
 	<StyledAmountLabel>
 		<StyledAmountInput
-			type="text"
+			required
+			type="number"
 			name="amount"
 			placeholder="0.00"
 			value={amount || ''}
+			autoComplete="off"
 			onChange={onChangeTransactionInfo}
 		/>
 	</StyledAmountLabel>
