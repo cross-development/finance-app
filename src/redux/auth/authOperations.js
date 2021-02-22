@@ -6,7 +6,7 @@ import authActions from './authActions';
 const proxyurl = 'https://cors-anywhere.herokuapp.com/';
 
 //Axios defaults config
-axios.defaults.baseURL = `https://sheltered-sea-54747.herokuapp.com`;
+axios.defaults.baseURL = `${proxyurl}https://sheltered-sea-54747.herokuapp.com`;
 
 const token = {
 	set(token) {
