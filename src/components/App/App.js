@@ -1,11 +1,10 @@
 //Core
 import React, { Suspense, useEffect } from 'react';
-import { Switch, BrowserRouter as Router, Route } from 'react-router-dom';
+import { Switch, BrowserRouter as Router } from 'react-router-dom';
 //Components
 import AppBar from '../AppBar';
 import SideBar from '../SideBar';
 import { Layout, Loader } from '../Commons';
-import CurrencyPage from 'pages/CurrencyPage';
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { authOperations } from 'redux/auth';
@@ -29,7 +28,7 @@ const App = () => {
 			dispatch(transactionsOperations.getTransactionCategories());
 		}
 	}, [dispatch, user]);
-	// {window.screen.width < 768 && <Route component={<CurrencyPage />} />}
+
 	return (
 		<Router>
 			{user && <AppBar />}
@@ -48,8 +47,6 @@ const App = () => {
 								<PublicRoute key={route.path} {...route} />
 							),
 						)}
-
-						{window.screen.width < 768 && <Route component={<CurrencyPage />} />}
 					</Switch>
 				</Suspense>
 			</Layout>

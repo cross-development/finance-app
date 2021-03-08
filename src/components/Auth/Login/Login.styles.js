@@ -190,27 +190,13 @@ export const StyledLink = styled(Link)`
 
 export const StyledRequireMessage = styled.div`
 	position: absolute;
-	bottom: 26px;
+	bottom: 10px;
 	right: 0;
-	background-color: #ff6596;
+	background-color: #ee5253;
 	color: #fff;
 	padding: 0.2rem 0.4rem;
 	border-radius: 4px;
 	font-size: 12px;
-	box-shadow: 0 0 8px #ff6596;
-
-	&::before {
-		content: '';
-		display: block;
-		width: 10px;
-		height: 10px;
-		position: absolute;
-		bottom: -6px;
-		border-bottom-left-radius: 50px;
-		border-bottom-right-radius: 50px;
-		left: 0;
-		background-color: #ff6596;
-	}
 `;
 
 export const StyledEmailIcon = styled(FaEnvelope)`

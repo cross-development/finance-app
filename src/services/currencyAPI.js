@@ -1,13 +1,11 @@
-//Core
-import axios from 'axios';
-
-const URL = 'https://cors-proxy-cross.herokuapp.com/privatbank/exchange';
+const BASE_URL = 'https://api.privatbank.ua/p24api';
 
 const getLatestCurrency = async () => {
 	try {
-		const { data } = await axios.get(URL);
+		const response = await fetch(`${BASE_URL}/pubinfo?json&exchange&coursid=5`);
+		const data = await response.json();
 
-		return await data;
+		return data;
 	} catch (error) {
 		throw Error(error);
 	}

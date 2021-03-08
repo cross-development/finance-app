@@ -3,9 +3,6 @@ import axios from 'axios';
 //Redux
 import transactionsActions from './transactionsActions';
 
-//Axios defaults config
-// axios.defaults.baseURL = `https://sheltered-sea-54747.herokuapp.com`;
-
 const addTransaction = ({ transaction }) => dispatch => {
 	dispatch(transactionsActions.addTransactionRequest());
 
@@ -31,14 +28,6 @@ const updateTransaction = transactionId => dispatch => {
 		.patch(`/api/transactions/${transactionId}`)
 		.then(() => dispatch(transactionsActions.updateTransactionSuccess(transactionId)))
 		.catch(error => dispatch(transactionsActions.updateTransactionFailure(error)));
-
-	// {
-	// 	"transactionDate": "string",
-	// 	"type": "INCOME",
-	// 	"categoryId": "string",
-	// 	"comment": "string",
-	// 	"amount": 0
-	//   }
 };
 
 const removeTransaction = transactionId => dispatch => {

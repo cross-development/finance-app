@@ -15,11 +15,7 @@ const beatCss = css`
 `;
 
 const Spinner = ({ onLoad }) => {
-	return (
-		<>
-			<PulseLoader size={15} color="#4a56e2" loading={onLoad} css={beatCss} />
-		</>
-	);
+	return <PulseLoader size={15} color="#4a56e2" loading={onLoad} css={beatCss} />;
 };
 
 Spinner.propTypes = {

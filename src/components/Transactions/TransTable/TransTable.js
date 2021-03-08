@@ -14,7 +14,6 @@ const TransTable = () => {
 	const { items: transactions } = useSelector(state => state.transactions);
 
 	const dispatch = useDispatch();
-	// .sort((a, b) => a.balanceAfter - b.balanceAfter)
 
 	const handleRemoveTransaction = ({ currentTarget: { id } }) =>
 		dispatch(transactionsOperations.removeTransaction(id));

@@ -11,9 +11,7 @@ const CurrencyRate = () => {
 	const [currency, setCurrency] = useState([]);
 	const [error, setError] = useState(null);
 
-	useEffect(() => {
-		getLatestCurrency().then(setCurrency).catch(setError);
-	}, []);
+	useEffect(() => getLatestCurrency().then(setCurrency).catch(setError), []);
 
 	const newCurrency = useMemo(() => currency.filter(({ ccy }) => ccy !== 'BTC'), [currency]);
 

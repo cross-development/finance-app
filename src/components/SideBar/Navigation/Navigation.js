@@ -3,10 +3,9 @@ import React from 'react';
 //Routes
 import routes from 'router';
 //Styles
+import { StyledNavItem, StyledNavLink } from './Navigation.styles';
 import { StyledHomeIcon, StyledChartIcon } from './Navigation.styles';
 import { StylesNavigationWrap, StyledNavigation } from './Navigation.styles';
-import { StyledNavItem, StyledNavLink } from './Navigation.styles';
-// import { StyledRatesIcon } from './Navigation.styles';
 
 const Navigation = () => (
 	<StylesNavigationWrap>

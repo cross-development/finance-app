@@ -1,5 +1,5 @@
 //Core
-import React, { useState } from 'react';
+import React from 'react';
 //Components
 import { Register } from 'components/Auth';
 import { Error } from 'components/Commons';
@@ -15,8 +15,6 @@ const initialState = {
 };
 
 const RegisterPage = () => {
-	const [progress, setProgress] = useState(0);
-
 	const { error } = useSelector(state => state.auth);
 	const dispatch = useDispatch();
 
@@ -29,7 +27,7 @@ const RegisterPage = () => {
 
 	return (
 		<>
-			<Register userInfo={initialState} progress={progress} handleSubmit={handleSubmit} />
+			<Register userInfo={initialState} handleSubmit={handleSubmit} />
 
 			{error && <Error message={error.message} />}
 		</>

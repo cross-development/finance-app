@@ -3,8 +3,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
-//Components
-import ProgressBar from '@ramonak/react-progress-bar';
 //Assets
 import Logo from 'assets/logo.png';
 //Styles
@@ -23,7 +21,7 @@ const SignupSchema = Yup.object().shape({
 		.oneOf([Yup.ref('password'), null], 'Passwords must match'),
 });
 
-const Register = ({ userInfo, progress, handleSubmit }) => (
+const Register = ({ userInfo, handleSubmit }) => (
 	<StyledRegisterWrap>
 		<StyledContainer>
 			<StyledPromoWrap />
@@ -96,8 +94,6 @@ const Register = ({ userInfo, progress, handleSubmit }) => (
 								) : null}
 							</StyledLabel>
 
-							<ProgressBar height="10px" labelSize="0px" bgcolor="#24CCA7" completed={progress} />
-
 							<StyledLabel>
 								<StylesNameIcon />
 
@@ -133,7 +129,6 @@ Register.propTypes = {
 		password: PropTypes.string.isRequired,
 		confirmPassword: PropTypes.string.isRequired,
 	}).isRequired,
-	progress: PropTypes.number.isRequired,
 	handleSubmit: PropTypes.func.isRequired,
 };
 

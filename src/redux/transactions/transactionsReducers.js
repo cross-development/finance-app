@@ -7,7 +7,7 @@ import transactionsActions from './transactionsActions';
 //Items reducer handler
 const addTransaction = (state, { payload }) => [...state, payload];
 const getTransactions = (state, { payload }) => payload;
-const updateTransaction = (state, { payload }) => payload; //!FIXES
+const updateTransaction = (state, { payload }) => payload;
 const removeTransaction = (state, { payload }) => state.filter(({ id }) => id !== payload);
 
 //Items reducer

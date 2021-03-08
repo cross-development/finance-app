@@ -18,7 +18,7 @@ const BalanceInfo = () => {
 		<StylesBalanceWrap>
 			<StyledTitle>Ваш баланс</StyledTitle>
 
-			<StyledBalance>&#8372; {balance}</StyledBalance>
+			<StyledBalance>&#8372; {balance || Number(0).toFixed(2)}</StyledBalance>
 		</StylesBalanceWrap>
 	);
 };
